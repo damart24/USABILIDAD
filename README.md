@@ -2,4 +2,4 @@
 MIRIAM MARTÍN SÁNCHEZ
 JAVIER CALLEJO HERNANDEZ
 DANIEL MARTÍN GÓMEZ</br>
-[ENLACE GDD](https://github.com/miriam-m-s/JUEGOS_SERIOS/blob/main/GDD.pdf)
+[ENLACE GDD](https://docs.google.com/document/d/1RWjVHlH1YXjQDFQ0GSZmfN4CCMx9q9kaxCE_lLDTRyY/edit)
