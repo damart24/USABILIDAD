@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2578f102bcdee04e9cc082ffffed3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  auxiliarSprite: {fileID: 21300000, guid: eb448aea1b46010478fa6ee3dad1d5bd, type: 3}
+  backSprite: {fileID: 21300000, guid: eb448aea1b46010478fa6ee3dad1d5bd, type: 3}
 --- !u!95 &1486029424174999045
 Animator:
   serializedVersion: 5
@@ -124,4 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb63af0b470d9674985f12ce0bcc90c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backSprite: {fileID: 0}
+  frontSprite: {fileID: 0}
