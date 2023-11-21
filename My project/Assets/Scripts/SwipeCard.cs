@@ -11,6 +11,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private Vector3 iniPos_;
     private float distancedMoved_;
     private bool swipeLeft_;
+    [HideInInspector]
+    public Sprite backSprite;
 
     public event Action cardMoved;
     void Start()
@@ -32,7 +34,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
         }
     }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         iniPos_ = transform.localPosition;
@@ -78,5 +79,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             yield return null;
         }
         Destroy(gameObject);
+    }
+    public void changeSprite() {
+        GetComponent<Image>().sprite = backSprite;
     }
 }

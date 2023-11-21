@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SecondImage : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite auxiliarSprite;
     private SwipeCard swipeCard_;
     private GameObject firstCard_;
     private float finalScale_, beginScale_;
@@ -12,13 +14,22 @@ public class SecondImage : MonoBehaviour
     {
         finalScale_ = transform.localScale.x;
         beginScale_ = 2.0f;
-        swipeCard_ = transform.parent.GetComponentInChildren<SwipeCard>();
+
+        swipeCard_ = transform.parent.GetChild(1).GetComponent<SwipeCard>();
+        //for (int i = 0; i < transform.parent.childCount; i++)
+        //{
+        //    if (transform.parent.GetChild(i) != this.transform)
+        //    {
+        //        swipeCard_ = transform.parent.GetComponentInChildren<SwipeCard>();
+        //        break;
+        //    }
+        //}
+        
         firstCard_ = swipeCard_.gameObject;
         transform.localScale = new Vector3(beginScale_, beginScale_, beginScale_);
         swipeCard_.cardMoved += cardMovedFront;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distancedMoved = firstCard_.transform.localPosition.x;
@@ -33,7 +44,10 @@ public class SecondImage : MonoBehaviour
     void cardMovedFront()
     {
         transform.parent.GetComponent<CardGenerator>().InstantiateCard();
-        gameObject.AddComponent<SwipeCard>();
+        SwipeCard swipeCard = gameObject.GetComponent<SwipeCard>();
+        swipeCard.enabled = true;
+        swipeCard.backSprite = auxiliarSprite;
+        GetComponent<Animator>().enabled = true;
         Destroy(this);
     }
 }
