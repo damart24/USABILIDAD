@@ -83,4 +83,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void changeSprite() {
         GetComponent<Image>().sprite = frontSprite;
     }
+    public void disableAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
 }
