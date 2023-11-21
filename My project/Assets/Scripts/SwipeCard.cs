@@ -12,7 +12,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private float distancedMoved_;
     private bool swipeLeft_;
     [HideInInspector]
-    public Sprite backSprite;
+    public Sprite frontSprite;
 
     public event Action cardMoved;
     void Start()
@@ -81,6 +81,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         Destroy(gameObject);
     }
     public void changeSprite() {
-        GetComponent<Image>().sprite = backSprite;
+        GetComponent<Image>().sprite = frontSprite;
     }
 }

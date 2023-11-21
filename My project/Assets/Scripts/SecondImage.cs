@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecondImage : MonoBehaviour
 {
     [SerializeField]
-    private Sprite auxiliarSprite;
+    private Sprite backSprite;
+    private Sprite frontSprite;
     private SwipeCard swipeCard_;
     private GameObject firstCard_;
     private float finalScale_, beginScale_;
     // Start is called before the first frame update
     void Start()
     {
+        frontSprite = GetComponent<Image>().sprite;
+        GetComponent<Image>().sprite = backSprite;
         finalScale_ = transform.localScale.x;
         beginScale_ = 2.0f;
 
@@ -46,7 +50,7 @@ public class SecondImage : MonoBehaviour
         transform.parent.GetComponent<CardGenerator>().InstantiateCard();
         SwipeCard swipeCard = gameObject.GetComponent<SwipeCard>();
         swipeCard.enabled = true;
-        swipeCard.backSprite = auxiliarSprite;
+        swipeCard.frontSprite = frontSprite;
         GetComponent<Animator>().enabled = true;
         Destroy(this);
     }
