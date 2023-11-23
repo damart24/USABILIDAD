@@ -17,7 +17,7 @@ public class SecondImage : MonoBehaviour
         frontSprite = GetComponent<Image>().sprite;
         GetComponent<Image>().sprite = backSprite;
         finalScale_ = transform.localScale.x;
-        beginScale_ = 2.0f;
+        beginScale_ = 6.0f;
 
         swipeCard_ = transform.parent.GetChild(1).GetComponent<SwipeCard>();
         //for (int i = 0; i < transform.parent.childCount; i++)
