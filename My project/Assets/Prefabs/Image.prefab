@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2578f102bcdee04e9cc082ffffed3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backSprite: {fileID: 21300000, guid: eb448aea1b46010478fa6ee3dad1d5bd, type: 3}
+  backSprite: {fileID: 21300000, guid: d5814acbdc5db2c4d853ba6cde63e4e9, type: 3}
 --- !u!95 &1486029424174999045
 Animator:
   serializedVersion: 5
