@@ -84,6 +84,6 @@ public class CardGenerator : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardPrefab_, transform, false);
         newCard.transform.SetAsFirstSibling();
-        newCard.GetComponent<Image>().sprite = sprites_[Random.Range(0, 2)];
+        newCard.GetComponent<Image>().sprite = sprites_[Random.Range(0, sprites_.Length)];
     }
 }
