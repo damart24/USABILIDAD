@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,7 @@ public class CardGenerator : MonoBehaviour
     [SerializeField]
     private Sprite[] sprites_;
     List<Carta> cartas = new List<Carta>();
+    List<Carta> cartasFijas = new List<Carta>();
 
     private void Start()
     {
@@ -76,6 +78,7 @@ public class CardGenerator : MonoBehaviour
             Debug.Log("Hola");
             cartas.Add(carta);
         }
+        cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
     }
 
     //Instancia la nueva carta que estará detrás del mazo
@@ -84,6 +87,58 @@ public class CardGenerator : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardPrefab_, transform, false);
         newCard.transform.SetAsFirstSibling();
-        newCard.GetComponent<Image>().sprite = sprites_[Random.Range(0, sprites_.Length)];
+        newCard.GetComponent<Image>().sprite = sprites_[UnityEngine.Random.Range(0, sprites_.Length)];
+    }
+
+    public int[] GenerateFixedCardsSelection()
+    {
+        int[] fixedCardsSelection = new int[7];
+        fixedCardsSelection[0] = SelectRandomFixedCard("Agricultura");
+        fixedCardsSelection[1] = SelectRandomFixedCard("Deforestación"); ;
+        fixedCardsSelection[2] = SelectRandomFixedCard("Energía eólica"); ;
+        fixedCardsSelection[3] = SelectRandomFixedCard("Fabrica/Economia");
+        fixedCardsSelection[4] = SelectRandomFixedCard("Ganaderia");
+        fixedCardsSelection[5] = SelectRandomFixedCard("Energía Solar");
+        fixedCardsSelection[6] = SelectRandomFixedCard("Prevención de incendios");
+
+        System.Random rng = new System.Random();
+        int n = fixedCardsSelection.Length;
+
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = fixedCardsSelection[k];
+            fixedCardsSelection[k] = fixedCardsSelection[n];
+            fixedCardsSelection[n] = value;
+        }
+
+        return fixedCardsSelection;
+    }
+
+    int SelectRandomFixedCard(string condicion)
+    {
+        List<Carta> cartasFiltradas = cartasFijas.FindAll(carta => carta.Tema == condicion);
+
+        int indiceAleatorio = UnityEngine.Random.Range(0, cartasFiltradas.Count);
+        return cartasFiltradas[indiceAleatorio].CardId;
+    }
+
+    int SelectRandomCard()
+    {
+        List<Carta> cartasNoFijas = cartas.FindAll(carta => carta.Condicion != "Evento fijo");
+
+        int indiceAleatorio = -1;
+        do
+        {
+            indiceAleatorio = Random.Range(0, cartasNoFijas.Count);
+        } while (!cartas[indiceAleatorio].Usada);
+
+        return cartasNoFijas[indiceAleatorio].CardId;
+    }
+
+    void DiscardUsedCard(int id)
+    {
+        cartas[id].Usada = true;
     }
 }
