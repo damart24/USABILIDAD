@@ -8,7 +8,7 @@ using TMPro;
 
 public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    GameObject text, canvas; 
+    GameObject text, canvas;
     //Distancia que se mueve la carta para que desaparezca
     private const float distanceDragged = 0.15f;
     //Guarda la posición inicial
@@ -22,25 +22,35 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public Sprite frontSprite;
     //Evento que sucederá al hacer el volteo de la carta y hará llamar a los métodos suscritos a él
     public event Action cardMoved;
+    private Coroutine fadeInCoroutine;
+    private Coroutine fadeOutCoroutine;
+
     //Guarda la posInicial
     void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
+            if (transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
                 text = transform.GetChild(i).gameObject;
             else
                 canvas = transform.GetChild(i).gameObject;
         }
         iniPos_ = transform.position;
+
+        canvas.SetActive(true);
+        text.SetActive(true);
+        Color canvasColor = canvas.GetComponent<Image>().color;
+        canvas.GetComponent<Image>().color = new Color(canvasColor.r, canvasColor.g, canvasColor.b, 0);
+        Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
+        text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, 0);
     }
     //Movemos la posición y calculamos la diferencia entre la posX actual y la original
     //Dependiendo de esa diferencia rotará más o menos y dependiendo el lado, a la izquierda o a la derecha
     public void OnDrag(PointerEventData eventData)
     {
         transform.localPosition = new Vector2(transform.localPosition.x + eventData.delta.x, transform.localPosition.y);
-    
-        if(transform.localPosition.x - iniPos_.x > 0)
+
+        if (transform.localPosition.x - iniPos_.x > 0)
         {
             transform.localEulerAngles = new Vector3(0, 0,
                 Mathf.LerpAngle(0, -30, (iniPos_.x + transform.localPosition.x) / (Screen.width / 2)));
@@ -55,19 +65,48 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
         if (distancedMoved_ < distanceDragged * Screen.width)
         {
-            text.SetActive(false);
-            canvas.SetActive(false);
+            if (canvas.GetComponent<Image>().color.a >= 0.1f)
+            {
+                // Detener la Coroutine existente antes de iniciar la nueva.
+                if (fadeOutCoroutine != null)
+                    StopCoroutine(fadeOutCoroutine);
+               
+                    fadeOutCoroutine = StartCoroutine(FadeOut());
+            }
         }
         else
         {
-            text.SetActive(true);
-            canvas.SetActive(true);
+            if (canvas.GetComponent<Image>().color.a <= 0.9f)
+            {
+                // Detener la Coroutine existente antes de iniciar la nueva.
+                if(fadeInCoroutine != null)
+                    StopCoroutine(fadeInCoroutine);
+                
+                    fadeInCoroutine = StartCoroutine(FadeIn());
 
-            if (transform.localPosition.x > iniPos_.x)        
-                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
-            else
-                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+                if (transform.localPosition.x > iniPos_.x)
+                    text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
+                else
+                    text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+
+            }
+
         }
+        //if (distancedMoved_ < distanceDragged * Screen.width)
+        //{
+        //    if(!fadeOut && canvas.GetComponent<Image>().color.a >= 0.1f)
+        //        StartCoroutine(FadeOut());
+        //}
+        //else
+        //{
+        //    if (!fadeIn && canvas.GetComponent<Image>().color.a <= 0.9f)
+        //        StartCoroutine(FadeIn());
+
+        //    if (transform.localPosition.x > iniPos_.x)
+        //        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
+        //    else
+        //        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+        //}
     }
     //Cuando empieza el drag, es decir el click sobre la imagen y movimiento guardamos la posOriginal
     public void OnBeginDrag(PointerEventData eventData)
@@ -84,7 +123,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         Color canvasColor = canvas.GetComponent<Image>().color;
 
         distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
-        if(distancedMoved_ < distanceDragged * Screen.width)
+        if (distancedMoved_ < distanceDragged * Screen.width)
         {
             transform.localPosition = iniPos_;
             transform.eulerAngles = Vector3.zero;
@@ -104,7 +143,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private IEnumerator MovedCard()
     {
         float time = 0;
-        
+
         Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
         Color canvasColor = canvas.GetComponent<Image>().color;
 
@@ -113,7 +152,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             time += Time.deltaTime;
             if (swipeLeft_)
             {
-                transform.localPosition = new Vector3(Mathf.SmoothStep(transform.localPosition.x, 
+                transform.localPosition = new Vector3(Mathf.SmoothStep(transform.localPosition.x,
                     transform.localPosition.x - 10, time), transform.localPosition.y, 0);
             }
             else
@@ -129,7 +168,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         Destroy(gameObject);
     }
     //Cambia el sprite por el frontal desde un evento en el animator
-    public void changeSprite() {
+    public void changeSprite()
+    {
         GetComponent<Image>().sprite = frontSprite;
     }
     //Desactiva el animator desde un evento en el animator
@@ -137,18 +177,53 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         GetComponent<Animator>().enabled = false;
     }
-    //public void FadeIn()
-    //{
-    //    LeanTween.value(gameObject, UpdateAlpha, 0f, 1f, 0.5f);
-    //}
+    private IEnumerator FadeOut()
+    {
+        StopCoroutine(FadeIn());
+        float duration = 0.1f;
 
-    //public void FadeOut()
-    //{
-    //    LeanTween.value(gameObject, UpdateAlpha, 1f, 0f, 0.5f);
-    //}
+        Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
+        Color canvasColor = canvas.GetComponent<Image>().color;
 
-    //private void UpdateAlpha(float alpha)
-    //{
-    //    canvasGroup.alpha = alpha;
-    //}
+        while (canvas.GetComponent<Image>().color.a > 0 ||
+            text.GetComponent<TMPro.TextMeshProUGUI>().color.a > 0)
+        {
+            canvasColor.a -= Time.deltaTime / duration;
+            canvas.GetComponent<Image>().color =
+                new Color(canvasColor.r, canvasColor.g, canvasColor.b, canvasColor.a);
+
+            textColor.a -= Time.deltaTime / duration;
+            text.GetComponent<TMPro.TextMeshProUGUI>().color =
+                new Color(textColor.r, textColor.g, textColor.b, textColor.a);
+            yield return null;
+        }
+
+        canvas.GetComponent<Image>().color = new Color(canvasColor.r, canvasColor.g, canvasColor.b, 0);
+        text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, 0);
+    }
+
+    private IEnumerator FadeIn()
+    {
+        StopCoroutine(FadeOut());
+        float duration = 0.1f;
+
+        Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
+        Color canvasColor = canvas.GetComponent<Image>().color;
+
+        while (canvas.GetComponent<Image>().color.a < 1 ||
+            text.GetComponent<TMPro.TextMeshProUGUI>().color.a < 1)
+        {
+            canvasColor.a += Time.deltaTime / duration;
+            canvas.GetComponent<Image>().color =
+                new Color(canvasColor.r, canvasColor.g, canvasColor.b, canvasColor.a);
+
+            textColor.a += Time.deltaTime / duration;
+            text.GetComponent<TMPro.TextMeshProUGUI>().color =
+                new Color(textColor.r, textColor.g, textColor.b, textColor.a);
+
+            yield return null;
+        }
+        canvas.GetComponent<Image>().color = new Color(canvasColor.r, canvasColor.g, canvasColor.b, 1);
+        text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, 1);
+    }
 }
