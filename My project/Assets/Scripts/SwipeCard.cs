@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    GameObject text, canvas; 
     //Distancia que se mueve la carta para que desaparezca
     private const float distanceDragged = 0.15f;
     //Guarda la posición inicial
@@ -23,6 +25,13 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Guarda la posInicial
     void Start()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
+                text = transform.GetChild(i).gameObject;
+            else
+                canvas = transform.GetChild(i).gameObject;
+        }
         iniPos_ = transform.position;
     }
     //Movemos la posición y calculamos la diferencia entre la posX actual y la original
@@ -41,6 +50,26 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             transform.localEulerAngles = new Vector3(0, 0,
                Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
         }
+
+        distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
+
+        if (distancedMoved_ < distanceDragged * Screen.width)
+        {
+            text.SetActive(false);
+            canvas.SetActive(false);
+        }
+        else
+        {
+            text.SetActive(true);
+            canvas.SetActive(true);
+
+            if (transform.localPosition.x > iniPos_.x)        
+                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
+            else
+                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+        }
+
+
     }
     //Cuando empieza el drag, es decir el click sobre la imagen y movimiento guardamos la posOriginal
     public void OnBeginDrag(PointerEventData eventData)

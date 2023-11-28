@@ -14,7 +14,8 @@ public class CardGenerator : MonoBehaviour
     //Lista de sprites aleatorios que se van a cambiar
     [SerializeField]
     private Sprite[] sprites_;
-    List<Carta> cartas = new List<Carta>();
+    int numCartas = 0;
+    List<Carta> cartas_ = new List<Carta>();
 
     private void Start()
     {
@@ -74,7 +75,8 @@ public class CardGenerator : MonoBehaviour
                 TextoExplicativo = values[20]
             };
             Debug.Log("Hola");
-            cartas.Add(carta);
+            cartas_.Add(carta);
+            numCartas++;
         }
     }
 
@@ -84,6 +86,51 @@ public class CardGenerator : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardPrefab_, transform, false);
         newCard.transform.SetAsFirstSibling();
-        newCard.GetComponent<Image>().sprite = sprites_[Random.Range(0, sprites_.Length)];
+        int num = Random.Range(0, numCartas);
+        //Carta auxiliarCarta = cartas_[num];
+
+        Carta playerCard = newCard.GetComponent<Carta>();
+
+        playerCard.Tema = cartas_[num].Tema;
+        playerCard.Nombre = cartas_[num].Nombre;
+        playerCard.Personaje = cartas_[num].Personaje;
+        playerCard.Pregunta = cartas_[num].Pregunta;
+        playerCard.Condicion = cartas_[num].Condicion;
+        playerCard.Probabilidad = cartas_[num].Probabilidad;
+        playerCard.SobrescribirSi = cartas_[num].SobrescribirSi;
+        playerCard.SiDinero = cartas_[num].SiDinero;
+        playerCard.SiGente = cartas_[num].SiGente;
+        playerCard.SiFlora = cartas_[num].SiFlora;
+        playerCard.SiFauna = cartas_[num].SiFauna;
+        playerCard.SiAire = cartas_[num].SiAire;
+        playerCard.ExtrasSi = cartas_[num].ExtrasSi;
+        playerCard.SobrescribeNo = cartas_[num].SobrescribeNo;
+        playerCard.NoDinero = cartas_[num].NoDinero;
+        playerCard.NoGente = cartas_[num].NoGente;
+        playerCard.NoFlora = cartas_[num].NoFlora;
+        playerCard.NoFauna = cartas_[num].NoFauna;
+        playerCard.NoAire = cartas_[num].NoAire;
+        playerCard.ExtrasNo = cartas_[num].ExtrasNo;
+        playerCard.TextoExplicativo = cartas_[num].TextoExplicativo;
+
+        if (playerCard.SobrescribeNo == "")
+            playerCard.SobrescribeNo = "No";
+
+        if (playerCard.SobrescribirSi == "")
+            playerCard.SobrescribeNo = "Si";
+
+        if (cartas_[num].Personaje == "Faustino el agricultor")
+        {
+            newCard.GetComponent<Image>().sprite = sprites_[1];
+        }
+        else if(cartas_[num].Personaje == "Toni el activista")
+        {
+            newCard.GetComponent<Image>().sprite = sprites_[0];
+        }
+        else
+        {
+            newCard.GetComponent<Image>().sprite = sprites_[2];
+        }
+        //newCard.GetComponent<Image>().sprite = sprites_[Random.Range(0, sprites_.Length)];
     }
 }
