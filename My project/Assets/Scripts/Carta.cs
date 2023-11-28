@@ -4,6 +4,10 @@ using UnityEngine;
 public class Carta : MonoBehaviour
 {
     [HideInInspector]
+    public int CardId;
+    [HideInInspector]
+    public bool Usada;
+    [HideInInspector]
     public string Tema;
     [HideInInspector]
     public string Nombre;

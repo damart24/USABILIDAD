@@ -77,8 +77,7 @@ public class CardGenerator : MonoBehaviour
                 TextoExplicativo = values[20]
             };
             Debug.Log("Hola");
-            cartas_.Add(carta);
-            numCartas++;
+            cartas.Add(carta);
         }
         cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
     }
@@ -89,31 +88,31 @@ public class CardGenerator : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardPrefab_, transform, false);
         newCard.transform.SetAsFirstSibling();
-        int num = Random.Range(0, cartas.Count());
+        int num = UnityEngine.Random.Range(0, cartas.Count);
 
         Carta playerCard = newCard.GetComponent<Carta>();
 
-        playerCard.Tema = cartas_[num].Tema;
-        playerCard.Nombre = cartas_[num].Nombre;
-        playerCard.Personaje = cartas_[num].Personaje;
-        playerCard.Pregunta = cartas_[num].Pregunta;
-        playerCard.Condicion = cartas_[num].Condicion;
-        playerCard.Probabilidad = cartas_[num].Probabilidad;
-        playerCard.SobrescribirSi = cartas_[num].SobrescribirSi;
-        playerCard.SiDinero = cartas_[num].SiDinero;
-        playerCard.SiGente = cartas_[num].SiGente;
-        playerCard.SiFlora = cartas_[num].SiFlora;
-        playerCard.SiFauna = cartas_[num].SiFauna;
-        playerCard.SiAire = cartas_[num].SiAire;
-        playerCard.ExtrasSi = cartas_[num].ExtrasSi;
-        playerCard.SobrescribeNo = cartas_[num].SobrescribeNo;
-        playerCard.NoDinero = cartas_[num].NoDinero;
-        playerCard.NoGente = cartas_[num].NoGente;
-        playerCard.NoFlora = cartas_[num].NoFlora;
-        playerCard.NoFauna = cartas_[num].NoFauna;
-        playerCard.NoAire = cartas_[num].NoAire;
-        playerCard.ExtrasNo = cartas_[num].ExtrasNo;
-        playerCard.TextoExplicativo = cartas_[num].TextoExplicativo;
+        playerCard.Tema = cartas[num].Tema;
+        playerCard.Nombre = cartas[num].Nombre;
+        playerCard.Personaje = cartas[num].Personaje;
+        playerCard.Pregunta = cartas[num].Pregunta;
+        playerCard.Condicion = cartas[num].Condicion;
+        playerCard.Probabilidad = cartas[num].Probabilidad;
+        playerCard.SobrescribirSi = cartas[num].SobrescribirSi;
+        playerCard.SiDinero = cartas[num].SiDinero;
+        playerCard.SiGente = cartas[num].SiGente;
+        playerCard.SiFlora = cartas[num].SiFlora;
+        playerCard.SiFauna = cartas[num].SiFauna;
+        playerCard.SiAire = cartas[num].SiAire;
+        playerCard.ExtrasSi = cartas[num].ExtrasSi;
+        playerCard.SobrescribeNo = cartas[num].SobrescribeNo;
+        playerCard.NoDinero = cartas[num].NoDinero;
+        playerCard.NoGente = cartas[num].NoGente;
+        playerCard.NoFlora = cartas[num].NoFlora;
+        playerCard.NoFauna = cartas[num].NoFauna;
+        playerCard.NoAire = cartas[num].NoAire;
+        playerCard.ExtrasNo = cartas[num].ExtrasNo;
+        playerCard.TextoExplicativo = cartas[num].TextoExplicativo;
 
         if (playerCard.SobrescribeNo == "")
             playerCard.SobrescribeNo = "No";
@@ -121,11 +120,11 @@ public class CardGenerator : MonoBehaviour
         if (playerCard.SobrescribirSi == "")
             playerCard.SobrescribeNo = "Si";
 
-        if (cartas_[num].Personaje == "Faustino el agricultor")
+        if (cartas[num].Personaje == "Faustino el agricultor")
         {
             newCard.GetComponent<Image>().sprite = sprites_[1];
         }
-        else if(cartas_[num].Personaje == "Toni el activista")
+        else if(cartas[num].Personaje == "Toni el activista")
         {
             newCard.GetComponent<Image>().sprite = sprites_[0];
         }
@@ -176,7 +175,7 @@ public class CardGenerator : MonoBehaviour
         int indiceAleatorio = -1;
         do
         {
-            indiceAleatorio = Random.Range(0, cartasNoFijas.Count);
+            indiceAleatorio = UnityEngine.Random.Range(0, cartasNoFijas.Count);
         } while (!cartas[indiceAleatorio].Usada);
 
         return cartasNoFijas[indiceAleatorio].CardId;
