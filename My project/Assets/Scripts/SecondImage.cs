@@ -24,14 +24,6 @@ public class SecondImage : MonoBehaviour
 
         //Conseguimos la referencia a la carta volteada
         swipeCard_ = transform.parent.GetChild(1).GetComponent<SwipeCard>();
-        //for (int i = 0; i < transform.parent.childCount; i++)
-        //{
-        //    if (transform.parent.GetChild(i) != this.transform)
-        //    {
-        //        swipeCard_ = transform.parent.GetComponentInChildren<SwipeCard>();
-        //        break;
-        //    }
-        //}
 
         //Guardamos el gameobject y añadimos el método al evento de swipeCard
         firstCard_ = swipeCard_.gameObject;

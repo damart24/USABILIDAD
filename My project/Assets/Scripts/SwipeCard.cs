@@ -68,8 +68,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             else
                 text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
         }
-
-
     }
     //Cuando empieza el drag, es decir el click sobre la imagen y movimiento guardamos la posOriginal
     public void OnBeginDrag(PointerEventData eventData)
@@ -80,6 +78,11 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Llama al invoke de cardMoved, sino vueve a la posición inicial y con la rotación actual
     public void OnEndDrag(PointerEventData eventData)
     {
+        float time = 0;
+
+        Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
+        Color canvasColor = canvas.GetComponent<Image>().color;
+
         distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
         if(distancedMoved_ < distanceDragged * Screen.width)
         {
@@ -102,6 +105,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         float time = 0;
         
+        Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
+        Color canvasColor = canvas.GetComponent<Image>().color;
+
         while (GetComponent<Image>().color != new Color(1, 1, 1, 0))
         {
             time += Time.deltaTime;
@@ -116,6 +122,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     transform.localPosition.x + 10, time), transform.localPosition.y, 0);
             }
             GetComponent<Image>().color = new Color(1, 1, 1, Mathf.SmoothStep(1, 0, 4 * time));
+            text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, Mathf.SmoothStep(1, 0, 4 * time));
+            canvas.GetComponent<Image>().color = new Color(canvasColor.r, canvasColor.g, canvasColor.b, Mathf.SmoothStep(1, 0, 4 * time));
             yield return null;
         }
         Destroy(gameObject);
@@ -129,4 +137,18 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         GetComponent<Animator>().enabled = false;
     }
+    //public void FadeIn()
+    //{
+    //    LeanTween.value(gameObject, UpdateAlpha, 0f, 1f, 0.5f);
+    //}
+
+    //public void FadeOut()
+    //{
+    //    LeanTween.value(gameObject, UpdateAlpha, 1f, 0f, 0.5f);
+    //}
+
+    //private void UpdateAlpha(float alpha)
+    //{
+    //    canvasGroup.alpha = alpha;
+    //}
 }

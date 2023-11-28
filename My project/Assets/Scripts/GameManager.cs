@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton pattern
-
-    
+    Carta[] cartasPorPartida;
 
     private void Awake()
     {

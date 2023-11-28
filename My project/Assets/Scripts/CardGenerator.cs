@@ -16,6 +16,7 @@ public class CardGenerator : MonoBehaviour
     [SerializeField]
     private Sprite[] sprites_;
 
+    private int numCartas = 0;
     List<Carta> cartas = new List<Carta>();
     List<Carta> cartasFijas = new List<Carta>();
 
@@ -23,6 +24,7 @@ public class CardGenerator : MonoBehaviour
     {
         string filePath = Path.Combine("Assets", "CSV", fileName);
         string[] lines = File.ReadAllLines(filePath);
+        numCartas = 0;
 
         foreach (string line in lines)
         {
@@ -74,9 +76,12 @@ public class CardGenerator : MonoBehaviour
                 NoAire = int.TryParse(values[18], out int noAire) ? noAire : 0,
 
                 ExtrasNo = values[19],
-                TextoExplicativo = values[20]
+                TextoExplicativo = values[20],
+                // Utilizando int.TryParse para manejar la conversión a entero de NoAire
+                CardId = numCartas,
+                Usada = false,
             };
-            Debug.Log("Hola");
+            numCartas++;
             cartas.Add(carta);
         }
         cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
@@ -118,7 +123,7 @@ public class CardGenerator : MonoBehaviour
             playerCard.SobrescribeNo = "No";
 
         if (playerCard.SobrescribirSi == "")
-            playerCard.SobrescribeNo = "Si";
+            playerCard.SobrescribirSi = "Si";
 
         if (cartas[num].Personaje == "Faustino el agricultor")
         {
