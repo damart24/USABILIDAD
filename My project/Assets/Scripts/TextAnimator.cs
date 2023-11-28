@@ -23,5 +23,7 @@ public class TextAnimator : MonoBehaviour
             textMeshPro.text += c;
             yield return new WaitForSeconds(delayBetweenLetters);
         }
+        yield return new WaitForSeconds(3f); // Puedes ajustar el tiempo de espera antes de cambiar de escena
+        MySceneManager.Instance.LoadScene("GameScene");
     }
 }
