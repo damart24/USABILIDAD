@@ -127,15 +127,19 @@ public class CardGenerator : MonoBehaviour
 
         if (cartas[num].Personaje == "Faustino el agricultor")
         {
-            newCard.GetComponent<Image>().sprite = sprites_[1];
+            newCard.GetComponent<Image>().sprite = sprites_[0];
         }
         else if(cartas[num].Personaje == "Toni el activista")
         {
-            newCard.GetComponent<Image>().sprite = sprites_[0];
+            newCard.GetComponent<Image>().sprite = sprites_[1];
+        }
+        else if (cartas[num].Personaje == "Paqui Jefa de Medio Ambiente")
+        {
+            newCard.GetComponent<Image>().sprite = sprites_[2];
         }
         else
         {
-            newCard.GetComponent<Image>().sprite = sprites_[2];
+            newCard.GetComponent<Image>().sprite = sprites_[3];
         }
     }
 
