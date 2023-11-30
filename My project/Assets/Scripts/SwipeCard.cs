@@ -62,7 +62,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
 
         distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
-        GameManager gameManager = GameManager.instance;
+        GameManager gameManager = GameManager.Instance;
 
         if (distancedMoved_ < distanceDragged * Screen.width)
         {
@@ -146,7 +146,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         else
         {
             Carta carta = GetComponent<Carta>();
-            GameManager gameManager = GameManager.instance;
+            GameManager gameManager = GameManager.Instance;
             int dinero, gente, flora, fauna, aireYAgua;
             if (transform.localPosition.x > iniPos_.x)
             {

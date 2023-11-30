@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance; // Singleton pattern
+    public static GameManager instance_; // Singleton pattern
     Carta[] cartasPorPartida;
 
     [HideInInspector]
@@ -17,13 +17,26 @@ public class GameManager : MonoBehaviour
     public Sprite[] circleSprites = new Sprite[2];
 
     private int[] resources = { 50, 50, 50, 50, 50 };
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance_ == null)
+            {
+                GameObject singleton = new GameObject("MySceneManagerSingleton");
+                instance_ = singleton.AddComponent<GameManager>();
+                DontDestroyOnLoad(singleton);
+            }
+            return instance_;
+        }
+    }
 
     private void Awake()
     {
         // Implementing a Singleton pattern to ensure only one instance of GameManager exists
-        if (instance == null)
+        if (instance_ == null)
         {
-            instance = this;
+            instance_ = this;
         }
         else
         {
