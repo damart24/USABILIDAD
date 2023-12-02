@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance_; // Singleton pattern
+    private static GameManager instance_; // Singleton pattern
     Carta[] cartasPorPartida;
 
     [HideInInspector]
@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public Sprite[] circleSprites = new Sprite[2];
+    [HideInInspector]
+    public TMPro.TextMeshProUGUI questionText =  new TMPro.TextMeshProUGUI();
 
     private int[] resources = { 50, 50, 50, 50, 50 };
     int uniqueUpdate = 0;

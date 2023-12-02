@@ -24,6 +24,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public event Action cardMoved;
     private Coroutine fadeInCoroutine;
     private Coroutine fadeOutCoroutine;
+    [HideInInspector]
+    public bool cardAvalaible = false;
 
     //Guarda la posInicial
     void Start()
@@ -48,79 +50,82 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Dependiendo de esa diferencia rotará más o menos y dependiendo el lado, a la izquierda o a la derecha
     public void OnDrag(PointerEventData eventData)
     {
-        transform.localPosition = new Vector2(transform.localPosition.x + eventData.delta.x, transform.localPosition.y);
-
-        if (transform.localPosition.x - iniPos_.x > 0)
+        if (cardAvalaible)
         {
-            transform.localEulerAngles = new Vector3(0, 0,
-                Mathf.LerpAngle(0, -30, (iniPos_.x + transform.localPosition.x) / (Screen.width / 2)));
-        }
-        else
-        {
-            transform.localEulerAngles = new Vector3(0, 0,
-               Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
-        }
-
-        distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
-        GameManager gameManager = GameManager.Instance;
-
-        if (distancedMoved_ < distanceDragged * Screen.width)
-        {
-            gameManager.hideAllIcons();
-            if (canvas.GetComponent<Image>().color.a >= 0.1f)
-            {
-                // Detener la Coroutine existente antes de iniciar la nueva.
-                if (fadeOutCoroutine != null)
-                    StopCoroutine(fadeOutCoroutine);
-               
-                    fadeOutCoroutine = StartCoroutine(FadeOut());
-            }
-        }
-        else
-        {
-            Carta carta = GetComponent<Carta>();
-            int dinero, gente, flora, fauna, aireYAgua;
-            if (canvas.GetComponent<Image>().color.a <= 0.9f)
-            {
-                // Detener la Coroutine existente antes de iniciar la nueva.
-                if(fadeInCoroutine != null)
-                    StopCoroutine(fadeInCoroutine);
-                
-                    fadeInCoroutine = StartCoroutine(FadeIn());
-
-                if (transform.localPosition.x > iniPos_.x)
-                    text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
-                else
-                    text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
-            }
+            transform.localPosition = new Vector2(transform.localPosition.x + eventData.delta.x, transform.localPosition.y);
 
             if (transform.localPosition.x - iniPos_.x > 0)
             {
-                dinero = carta.SiDinero;
-                gente = carta.SiGente;
-                flora = carta.SiFlora;
-                fauna = carta.SiFauna;
-                aireYAgua = carta.SiAire;
+                transform.localEulerAngles = new Vector3(0, 0,
+                    Mathf.LerpAngle(0, -30, (iniPos_.x + transform.localPosition.x) / (Screen.width / 2)));
             }
             else
             {
-                dinero = carta.NoDinero;
-                gente = carta.NoGente;
-                flora = carta.NoFlora;
-                fauna = carta.NoFauna;
-                aireYAgua = carta.NoAire;
+                transform.localEulerAngles = new Vector3(0, 0,
+                   Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
             }
 
-            if (dinero != 0)
-                gameManager.showIcon(0, dinero);
-            if (gente != 0)
-                gameManager.showIcon(1, gente);
-            if (flora != 0)
-                gameManager.showIcon(2, flora);
-            if (fauna != 0)
-                gameManager.showIcon(3, fauna);
-            if (aireYAgua != 0)
-                gameManager.showIcon(4, aireYAgua);
+            distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
+            GameManager gameManager = GameManager.Instance;
+
+            if (distancedMoved_ < distanceDragged * Screen.width)
+            {
+                gameManager.hideAllIcons();
+                if (canvas.GetComponent<Image>().color.a >= 0.1f)
+                {
+                    // Detener la Coroutine existente antes de iniciar la nueva.
+                    if (fadeOutCoroutine != null)
+                        StopCoroutine(fadeOutCoroutine);
+               
+                        fadeOutCoroutine = StartCoroutine(FadeOut());
+                }
+            }
+            else
+            {
+                Carta carta = GetComponent<Carta>();
+                int dinero, gente, flora, fauna, aireYAgua;
+                if (canvas.GetComponent<Image>().color.a <= 0.9f)
+                {
+                    // Detener la Coroutine existente antes de iniciar la nueva.
+                    if(fadeInCoroutine != null)
+                        StopCoroutine(fadeInCoroutine);
+                
+                        fadeInCoroutine = StartCoroutine(FadeIn());
+
+                    if (transform.localPosition.x > iniPos_.x)
+                        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
+                    else
+                        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+                }
+
+                if (transform.localPosition.x - iniPos_.x > 0)
+                {
+                    dinero = carta.SiDinero;
+                    gente = carta.SiGente;
+                    flora = carta.SiFlora;
+                    fauna = carta.SiFauna;
+                    aireYAgua = carta.SiAire;
+                }
+                else
+                {
+                    dinero = carta.NoDinero;
+                    gente = carta.NoGente;
+                    flora = carta.NoFlora;
+                    fauna = carta.NoFauna;
+                    aireYAgua = carta.NoAire;
+                }
+
+                if (dinero != 0)
+                    gameManager.showIcon(0, dinero);
+                if (gente != 0)
+                    gameManager.showIcon(1, gente);
+                if (flora != 0)
+                    gameManager.showIcon(2, flora);
+                if (fauna != 0)
+                    gameManager.showIcon(3, fauna);
+                if (aireYAgua != 0)
+                    gameManager.showIcon(4, aireYAgua);
+            }
         }
     }
     //Cuando empieza el drag, es decir el click sobre la imagen y movimiento guardamos la posOriginal
@@ -221,6 +226,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void disableAnimator()
     {
         GetComponent<Animator>().enabled = false;
+        GameManager.Instance.questionText.text = GetComponent<Carta>().Pregunta;
+        cardAvalaible = true;
     }
     private IEnumerator FadeOut()
     {

@@ -8,6 +8,7 @@ public class Resources : MonoBehaviour
     public RectTransform[] resourcesBars = new RectTransform[5];
     public Image[] imageArray = new Image[5];
     public Sprite[] circleSprite = new Sprite[2];
+    public TMPro.TextMeshProUGUI questionText = new TMPro.TextMeshProUGUI(); 
     private void Start()
     {
         GameManager gameManager = GameManager.Instance;
@@ -23,5 +24,6 @@ public class Resources : MonoBehaviour
         {
             gameManager.circleSprites[i] = circleSprite[i];
         }
+        gameManager.questionText = questionText;
     }
 }
