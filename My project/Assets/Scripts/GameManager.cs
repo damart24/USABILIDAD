@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Sprite[] circleSprites = new Sprite[2];
 
     private int[] resources = { 50, 50, 50, 50, 50 };
+    int uniqueUpdate = 0;
     public static GameManager Instance
     {
         get
@@ -50,9 +52,13 @@ public class GameManager : MonoBehaviour
     {
         if (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
-            for (int i = 0; i < resources.Length; i++)
+            if(uniqueUpdate <= 0)
             {
-                resourcesBars[i].transform.localScale = new Vector3(1, (float)resources[i]/100, 1);
+                for (int i = 0; i < resources.Length; i++)
+                {
+                    resourcesBars[i].transform.localScale = new Vector3(1, (float)resources[i] / 100, 1);
+                }
+                uniqueUpdate++;
             }
         }
     }
@@ -60,6 +66,11 @@ public class GameManager : MonoBehaviour
     public void AddResource(int resource, int value)
     {
         resources[resource] += value;
+
+        if (resources[resource] > 200)
+            resources[resource] = 200;
+        else if (resources[resource] < 0)
+            resources[resource] = 0;
     }
 
     public void showIcon(int resource, int value)
@@ -76,4 +87,28 @@ public class GameManager : MonoBehaviour
             imageArray[i].gameObject.SetActive(false);
         }
     }
+
+    public IEnumerator changeResources()
+    {
+        float duration = 0.3f;
+
+        while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
+        {
+            for (int i = 0; i < resources.Length; i++)
+            {
+                float targetScaleY = (float)resources[i] / 100;
+                float currentScaleY = resourcesBars[i].transform.localScale.y;
+                float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, Time.deltaTime / duration);
+
+                resourcesBars[i].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+            }
+
+            Debug.Log("Aqui estoy");
+
+            yield return null;
+        }
+
+        // Asegúrate de que los valores finales estén configurados según sea necesario
+    }
+
 }

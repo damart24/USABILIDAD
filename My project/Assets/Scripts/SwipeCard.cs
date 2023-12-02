@@ -179,6 +179,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             if (aireYAgua != 0)
                 gameManager.AddResource(4, aireYAgua);
 
+            StartCoroutine(gameManager.changeResources());
             cardMoved?.Invoke();
             StartCoroutine(MovedCard());
         }
