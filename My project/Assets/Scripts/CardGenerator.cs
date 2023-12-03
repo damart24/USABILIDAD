@@ -19,7 +19,6 @@ public class CardGenerator : MonoBehaviour
     private int numCartas = 0;
     List<Carta> cartas = new List<Carta>();
     List<Carta> cartasFijas = new List<Carta>();
-
     private void Start()
     {
         string filePath = Path.Combine("Assets", "CSV", fileName);
@@ -136,7 +135,6 @@ public class CardGenerator : MonoBehaviour
             {
                 newCard.GetComponent<Image>().sprite = sprites_[3];
             }
-
             cartas[gameManager.cartasPorPartida[gameManager.cardsCount].CardId].Usada = true;
             gameManager.cardsCount++;
         }
@@ -207,13 +205,14 @@ public class CardGenerator : MonoBehaviour
 
     Carta SelectRandomCard()
     {
+
         List<Carta> cartasNoFijas = cartas.FindAll(carta => carta.Condicion != "Evento fijo");
 
         int indiceAleatorio = -1;
         do
         {
             indiceAleatorio = UnityEngine.Random.Range(0, cartasNoFijas.Count);
-        } while (cartas[indiceAleatorio].Usada);
+        } while (cartas[indiceAleatorio].Usada || (cartas[indiceAleatorio].Condicion != "Evento fijo" && !GameManager.Instance.conditions.Contains(cartas[indiceAleatorio].Condicion)));
 
         return cartas[cartasNoFijas[indiceAleatorio].CardId];
     }

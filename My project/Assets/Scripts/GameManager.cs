@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public bool gameWon = false;
     [HideInInspector]
     public int lastExplanationUsed = -1;
+    [HideInInspector]
+    public List<string> conditions;
 
     private void Awake()
     {

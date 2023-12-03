@@ -149,11 +149,14 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
         else
         {
+            cardMoved?.Invoke();
             Carta carta = GetComponent<Carta>();
             GameManager gameManager = GameManager.Instance;
             int dinero, gente, flora, fauna, aireYAgua;
             if (transform.localPosition.x > iniPos_.x)
             {
+                if (gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasSi != "")
+                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasSi);
                 dinero = carta.SiDinero;
                 gente = carta.SiGente;
                 flora = carta.SiFlora;
@@ -163,6 +166,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             }
             else
             {
+                if (gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasNo != "")
+                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasNo);
                 dinero = carta.NoDinero;
                 gente = carta.NoGente;
                 flora = carta.NoFlora;
@@ -197,7 +202,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 explanationObjectInstance.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textoExplicativo;
             }
            
-            cardMoved?.Invoke();
             StartCoroutine(MovedCard());
         }
     }
