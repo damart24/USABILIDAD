@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -185,6 +186,15 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 gameManager.AddResource(4, aireYAgua);
 
             StartCoroutine(gameManager.changeResources());
+            String textoExplicativo = GetComponent<Carta>().TextoExplicativo;
+
+            if(textoExplicativo != "")
+            {
+                GameObject explanation = gameManager.explanationGameObjects[UnityEngine.Random.Range(0, 5)];
+                GameObject explanationObjectInstance = Instantiate(explanation, gameManager.explanationCanvas);
+                explanationObjectInstance.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textoExplicativo;
+            }
+           
             cardMoved?.Invoke();
             StartCoroutine(MovedCard());
         }

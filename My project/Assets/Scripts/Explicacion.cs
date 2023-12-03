@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Explicacion : MonoBehaviour
 {
-    public GameObject[] prefabs = new GameObject[5];
-    private void Start()
+    public void disableAnimator()
     {
+        GetComponent<Animator>().enabled = false;
     }
 }

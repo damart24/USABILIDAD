@@ -85,6 +85,7 @@ public class CardGenerator : MonoBehaviour
             cartas.Add(carta);
         }
         cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
+      /*  GameManager.Instance.cartasPorPartida = */GenerateFixedCardsSelection();
     }
 
     //Instancia la nueva carta que estará detrás del mazo
@@ -194,4 +195,9 @@ public class CardGenerator : MonoBehaviour
     {
         cartas[id].Usada = true;
     }
+
+    //public Carta[] DevolverCartasPorId() {
+    //    GenerateFixedCardsSelection[];
+    //    Carta[]
+    //}
 }

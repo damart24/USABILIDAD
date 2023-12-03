@@ -1331,12 +1331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4423eb22fa255f74b85b31f4ace1f6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 8558022799566512500, guid: 632c16f503089b745b8529357a3d4545, type: 3}
-  - {fileID: 3717870586746169189, guid: 1018185c1aee12c41965bbafd9473e9f, type: 3}
-  - {fileID: 2251301934270811569, guid: b5b2eeac6370875428c956be47b278ef, type: 3}
-  - {fileID: 7893554636530312297, guid: 1c7566eca78faf74b9a2852c521154d5, type: 3}
-  - {fileID: 4269060401170619364, guid: 939226892967c6644ae6a7ee3d14e74e, type: 3}
 --- !u!1 &1325133052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,6 +3471,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: df20da351b2fd83449bb39b8dd518f7d, type: 3}
   - {fileID: 21300000, guid: 5b497f107bc30824eb79d58e6266e096, type: 3}
   questionText: {fileID: 580952837}
+  explanationGameObjects:
+  - {fileID: 8558022799566512500, guid: 632c16f503089b745b8529357a3d4545, type: 3}
+  - {fileID: 3717870586746169189, guid: 1018185c1aee12c41965bbafd9473e9f, type: 3}
+  - {fileID: 2251301934270811569, guid: b5b2eeac6370875428c956be47b278ef, type: 3}
+  - {fileID: 7893554636530312297, guid: 1c7566eca78faf74b9a2852c521154d5, type: 3}
+  - {fileID: 4269060401170619364, guid: 939226892967c6644ae6a7ee3d14e74e, type: 3}
+  explanationCanvas: {fileID: 1290146309}
 --- !u!1 &8482998742037795947
 GameObject:
   m_ObjectHideFlags: 0
