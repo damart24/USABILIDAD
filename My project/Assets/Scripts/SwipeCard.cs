@@ -138,8 +138,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Llama al invoke de cardMoved, sino vueve a la posición inicial y con la rotación actual
     public void OnEndDrag(PointerEventData eventData)
     {
-        float time = 0;
-
         Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
         Color canvasColor = canvas.GetComponent<Image>().color;
 
@@ -190,7 +188,11 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
             if(textoExplicativo != "")
             {
-                GameObject explanation = gameManager.explanationGameObjects[UnityEngine.Random.Range(0, 5)];
+                int explanationNumber =  gameManager.lastExplanationUsed;
+                while (explanationNumber == gameManager.lastExplanationUsed)
+                    explanationNumber = UnityEngine.Random.Range(0, 5);
+
+                GameObject explanation = gameManager.explanationGameObjects[explanationNumber];
                 GameObject explanationObjectInstance = Instantiate(explanation, gameManager.explanationCanvas);
                 explanationObjectInstance.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textoExplicativo;
             }

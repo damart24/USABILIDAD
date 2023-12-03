@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance_;
-    public Carta[] cartasPorPartida;
+    public List<Carta> cartasPorPartida;
     [HideInInspector]
     public RectTransform[] resourcesBars = new RectTransform[5];
     [HideInInspector]
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
     public RectTransform explanationCanvas;
     private int[] resources = { 50, 50, 50, 50, 50 };
     int uniqueUpdate = 0;
-
+    [HideInInspector]
+    public int cardsCount = 0;
     public static GameManager Instance
     {
         get
@@ -35,6 +37,10 @@ public class GameManager : MonoBehaviour
             return instance_;
         }
     }
+    [HideInInspector]
+    public bool gameWon = false;
+    [HideInInspector]
+    public int lastExplanationUsed = -1;
 
     private void Awake()
     {
@@ -54,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
-            if(uniqueUpdate <= 0)
+            if (uniqueUpdate <= 0)
             {
                 for (int i = 0; i < resources.Length; i++)
                 {
@@ -63,6 +69,8 @@ public class GameManager : MonoBehaviour
                 uniqueUpdate++;
             }
         }
+        else if (uniqueUpdate > 0)
+            resetGame();
     }
 
     public void AddResource(int resource, int value)
@@ -110,5 +118,11 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
-
+    void resetGame()
+    {
+        uniqueUpdate = 0;
+        cardsCount = 0;
+        gameWon = false;
+        lastExplanationUsed = -1;
+    }
 }
