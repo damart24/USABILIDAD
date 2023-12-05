@@ -136,12 +136,12 @@ public class CardGenerator : MonoBehaviour
             if (spritesChosen.TryGetValue(personaje, out Sprite sprite))
             {
                 // Si el personaje está en el diccionario, asignar el sprite a la imagen
-                newCard.transform.GetChild(2).GetComponent<Image>().sprite = sprite;
+                newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprite;
             }
             else
             {
                 //Asigna el sprite a baltasar
-                newCard.transform.GetChild(2).GetComponent<Image>().sprite = sprites_[3];
+                newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprites_[3];
                 // Manejar el caso en el que el personaje no está en el diccionario
                 Debug.LogWarning($"No se encontró el sprite para el personaje: {personaje}");
             }

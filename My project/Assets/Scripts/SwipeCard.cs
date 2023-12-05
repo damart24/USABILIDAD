@@ -31,9 +31,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Guarda la posInicial
     void Start()
     {
-        text = transform.GetChild(1).gameObject;
-        canvas = transform.GetChild(0).gameObject;
-        anotherImage = transform.GetChild(2).gameObject;
+        text = transform.GetChild(3).gameObject;
+        canvas = transform.GetChild(2).gameObject;
+        anotherImage = transform.GetChild(1).gameObject;
        
         iniPos_ = transform.position;
 
@@ -230,7 +230,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
         Color canvasColor = canvas.GetComponent<Image>().color;
 
-        while (GetComponent<Image>().color != new Color(1, 1, 1, 0))
+        while (anotherImage.GetComponent<Image>().color != new Color(1, 1, 1, 0))
         {
             time += Time.deltaTime;
             if (swipeLeft_)
@@ -243,7 +243,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 transform.localPosition = new Vector3(Mathf.SmoothStep(transform.localPosition.x,
                     transform.localPosition.x + 10, time), transform.localPosition.y, 0);
             }
-            GetComponent<Image>().color = new Color(1, 1, 1, Mathf.SmoothStep(1, 0, 4 * time));
+            anotherImage.GetComponent<Image>().color = new Color(1, 1, 1, Mathf.SmoothStep(1, 0, 4 * time));
             text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, Mathf.SmoothStep(1, 0, 4 * time));
             canvas.GetComponent<Image>().color = new Color(canvasColor.r, canvasColor.g, canvasColor.b, Mathf.SmoothStep(1, 0, 4 * time));
             yield return null;

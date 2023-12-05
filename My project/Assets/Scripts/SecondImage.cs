@@ -19,8 +19,8 @@ public class SecondImage : MonoBehaviour
     void Start()
     {
         //Intercambian sprites y se guarda el frontal
-        frontSprite = transform.GetChild(2).GetComponent<Image>().sprite;
-        transform.GetChild(2).GetComponent<Image>().sprite = backSprite;
+        frontSprite = transform.GetChild(1).GetComponent<Image>().sprite;
+        transform.GetChild(1).GetComponent<Image>().sprite = backSprite;
 
         //Conseguimos la referencia a la carta volteada
         swipeCard_ = transform.parent.GetChild(1).GetComponent<SwipeCard>();
