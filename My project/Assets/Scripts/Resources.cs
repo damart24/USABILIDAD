@@ -11,6 +11,8 @@ public class Resources : MonoBehaviour
     public TMPro.TextMeshProUGUI questionText = new TMPro.TextMeshProUGUI();
     public GameObject[] explanationGameObjects = new GameObject[5];
     public RectTransform explanationCanvas;
+    public string[] tokensNames = new string[3];
+    public GameObject[] tokens = new GameObject[3];
     private void Start()
     {
         GameManager gameManager = GameManager.Instance;
@@ -32,5 +34,9 @@ public class Resources : MonoBehaviour
             gameManager.explanationGameObjects[i] = explanationGameObjects[i];
         }
         gameManager.explanationCanvas =  explanationCanvas;
+        for (int i = 0; i < tokensNames.Length; i++)
+        {
+            gameManager.tokens.Add(tokensNames[i], tokens[i]);
+        }
     }
 }

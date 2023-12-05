@@ -153,10 +153,17 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             Carta carta = GetComponent<Carta>();
             GameManager gameManager = GameManager.Instance;
             int dinero, gente, flora, fauna, aireYAgua;
+            string extras = "ficha";
+
             if (transform.localPosition.x > iniPos_.x)
             {
-                if (gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasSi != "")
-                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasSi);
+                if (gameManager.cardsCount - 3 >= 0 && gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasSi != "")
+                {
+                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasSi);
+                    extras = gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasSi;
+                }
+
+
                 dinero = carta.SiDinero;
                 gente = carta.SiGente;
                 flora = carta.SiFlora;
@@ -166,8 +173,11 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             }
             else
             {
-                if (gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasNo != "")
-                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 1].ExtrasNo);
+                if (gameManager.cardsCount - 3 >= 0 && gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo != "")
+                {
+                    gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo);
+                    extras = gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo;
+                }
                 dinero = carta.NoDinero;
                 gente = carta.NoGente;
                 flora = carta.NoFlora;
@@ -175,6 +185,14 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 aireYAgua = carta.NoAire;
                 swipeLeft_ = true;
             }
+
+            // Verificar si el personaje está en el diccionario
+            if (gameManager.tokens.TryGetValue(extras, out GameObject tokenGameObject))
+            {
+                tokenGameObject.GetComponent<Animator>().enabled = true;
+                tokenGameObject.GetComponent<Image>().enabled = true;
+            }
+
             gameManager.hideAllIcons();
 
             if(dinero != 0)

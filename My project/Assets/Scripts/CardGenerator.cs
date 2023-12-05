@@ -29,7 +29,7 @@ public class CardGenerator : MonoBehaviour
         spritesChosen.Add("Paqui Jefa de Medio Ambiente", sprites_[2]);
         spritesChosen.Add("Baltasar el empresario", sprites_[3]);
         spritesChosen.Add("Eli agente forestal", sprites_[4]);
-        spritesChosen.Add("Rodrigo el biologo", sprites_[3]);
+        spritesChosen.Add("Rodrigo el Biologo", sprites_[5]);
         spritesChosen.Add("Laura la arquitecto", sprites_[3]);
 
         string filePath = Path.Combine("Assets", "CSV", fileName);
@@ -79,7 +79,7 @@ public class CardGenerator : MonoBehaviour
         GameManager gameManager = GameManager.Instance;
         int num = gameManager.cardsCount;
 
-        if (num < gameManager.cartasPorPartida.Count)
+        if (num < gameManager.cartasPorPartida.Count + 2)
         {
             GameObject newCard = Instantiate(cardPrefab_, transform, false);
             newCard.transform.SetAsFirstSibling();
