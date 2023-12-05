@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
     public GameObject[] explanationGameObjects = new GameObject[5];
     [HideInInspector]
     public RectTransform explanationCanvas;
+    [HideInInspector]
+    public Dictionary<string, GameObject> tokens = new Dictionary<string, GameObject>();
     private int[] resources = { 50, 50, 50, 50, 50 };
     int uniqueUpdate = 0;
     [HideInInspector]
     public int cardsCount = 0;
+
     public static GameManager Instance
     {
         get

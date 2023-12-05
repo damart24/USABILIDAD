@@ -434,6 +434,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0dd496f98a09c0f4e9407cb102deb636, type: 3}
   - {fileID: 21300000, guid: efe18db78f092684bbbe95ee77dbcedd, type: 3}
   - {fileID: 21300000, guid: f4c517b3ed612bf4e9343b7cb063d5b8, type: 3}
+  - {fileID: 21300000, guid: cae1b5f9155fb434b8cd641e595e277e, type: 3}
 --- !u!1 &354131032
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +447,7 @@ GameObject:
   - component: {fileID: 354131035}
   - component: {fileID: 354131034}
   - component: {fileID: 354131036}
+  - component: {fileID: 354131037}
   m_Layer: 5
   m_Name: fichaEmpresa
   m_TagString: Untagged
@@ -531,6 +533,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &354131037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354131032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6d292d100f8ae4788f9d6518f4ae68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &394987460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +1965,7 @@ GameObject:
   - component: {fileID: 1743726258}
   - component: {fileID: 1743726257}
   - component: {fileID: 1743726259}
+  - component: {fileID: 1743726260}
   m_Layer: 5
   m_Name: fichaEolica
   m_TagString: Untagged
@@ -2036,6 +2051,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1743726260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743726255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6d292d100f8ae4788f9d6518f4ae68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810501687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,8 +2457,9 @@ GameObject:
   - component: {fileID: 1984901507}
   - component: {fileID: 1984901506}
   - component: {fileID: 1984901508}
+  - component: {fileID: 1984901509}
   m_Layer: 5
-  m_Name: ficha1
+  m_Name: fichaCortafuegos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2515,6 +2543,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1984901509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984901504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6d292d100f8ae4788f9d6518f4ae68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2025578936 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8879512081188524211, guid: d8ff3dcdc7280f0499b48dfbbb421934, type: 3}
@@ -3809,6 +3849,14 @@ MonoBehaviour:
   - {fileID: 7893554636530312297, guid: 1c7566eca78faf74b9a2852c521154d5, type: 3}
   - {fileID: 4269060401170619364, guid: 939226892967c6644ae6a7ee3d14e74e, type: 3}
   explanationCanvas: {fileID: 1290146309}
+  tokensNames:
+  - ficha cortafuegos
+  - ficha empresa
+  - ficha eolica
+  tokens:
+  - {fileID: 1984901504}
+  - {fileID: 354131032}
+  - {fileID: 1743726255}
 --- !u!1 &8482998742037795947
 GameObject:
   m_ObjectHideFlags: 0
