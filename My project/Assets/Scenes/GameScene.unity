@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 354131033}
   - component: {fileID: 354131035}
   - component: {fileID: 354131034}
+  - component: {fileID: 354131036}
   m_Layer: 5
   m_Name: ficha2
   m_TagString: Untagged
@@ -508,6 +509,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354131032}
   m_CullTransparentMesh: 1
+--- !u!95 &354131036
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354131032}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4036fc1c7f2458748825ec279ab3724d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &394987460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,6 +1949,7 @@ GameObject:
   - component: {fileID: 1743726256}
   - component: {fileID: 1743726258}
   - component: {fileID: 1743726257}
+  - component: {fileID: 1743726259}
   m_Layer: 5
   m_Name: ficha3
   m_TagString: Untagged
@@ -1991,6 +2014,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743726255}
   m_CullTransparentMesh: 1
+--- !u!95 &1743726259
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743726255}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4036fc1c7f2458748825ec279ab3724d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1810501687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2428,7 @@ GameObject:
   - component: {fileID: 1984901505}
   - component: {fileID: 1984901507}
   - component: {fileID: 1984901506}
+  - component: {fileID: 1984901508}
   m_Layer: 5
   m_Name: ficha1
   m_TagString: Untagged
@@ -2448,6 +2493,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984901504}
   m_CullTransparentMesh: 1
+--- !u!95 &1984901508
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984901504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4036fc1c7f2458748825ec279ab3724d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &2025578936 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8879512081188524211, guid: d8ff3dcdc7280f0499b48dfbbb421934, type: 3}
