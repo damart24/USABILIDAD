@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    GameObject text, canvas, anotherImage;
+    GameObject text, canvas, anotherImage, cardWhiteAnimator;
     //Distancia que se mueve la carta para que desaparezca
     private const float distanceDragged = 0.15f;
     //Guarda la posici�n inicial
@@ -31,9 +31,10 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Guarda la posInicial
     void Start()
     {
-        text = transform.GetChild(3).gameObject;
-        canvas = transform.GetChild(2).gameObject;
+        cardWhiteAnimator = transform.GetChild(0).gameObject;
         anotherImage = transform.GetChild(1).gameObject;
+        canvas = transform.GetChild(2).gameObject;
+        text = transform.GetChild(3).gameObject;
        
         iniPos_ = transform.position;
 
@@ -51,6 +52,11 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         if (cardAvalaible)
         {
             transform.localPosition = new Vector2(transform.localPosition.x + eventData.delta.x, transform.localPosition.y);
+
+            if(transform.localPosition != iniPos_ && cardWhiteAnimator.GetComponent<Animation>())
+                cardWhiteAnimator.SetActive(false);
+            else if (cardWhiteAnimator.GetComponent<Animation>())
+                cardWhiteAnimator.SetActive(true);
 
             if (transform.localPosition.x - iniPos_.x > 0)
             {
@@ -143,6 +149,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         {
             transform.localPosition = iniPos_;
             transform.eulerAngles = Vector3.zero;
+            if (cardWhiteAnimator.GetComponent<Animation>())
+                cardWhiteAnimator.SetActive(true);
         }
         else
         {
@@ -260,6 +268,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         GetComponent<Animator>().enabled = false;
         GameManager.Instance.questionText.text = GetComponent<Carta>().Pregunta;
+        cardWhiteAnimator.SetActive(true);
         cardAvalaible = true;
     }
     private IEnumerator FadeOut()
