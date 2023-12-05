@@ -19,8 +19,19 @@ public class CardGenerator : MonoBehaviour
     private int numCartas = 0;
     List<Carta> cartas = new List<Carta>();
     List<Carta> cartasFijas = new List<Carta>();
+    private Dictionary<string, Sprite> spritesChosen = new Dictionary<string, Sprite>();
+
     private void Start()
     {
+        // Asociar nombres de sprite con rutas
+        spritesChosen.Add("Faustino el agricultor", sprites_[0]);
+        spritesChosen.Add("Toni el activista", sprites_[1]);
+        spritesChosen.Add("Paqui Jefa de Medio Ambiente", sprites_[2]);
+        spritesChosen.Add("Baltasar el empresario", sprites_[3]);
+        spritesChosen.Add("Eli agente forestal", sprites_[4]);
+        spritesChosen.Add("Rodrigo el biologo", sprites_[3]);
+        spritesChosen.Add("Laura la arquitecto", sprites_[3]);
+
         string filePath = Path.Combine("Assets", "CSV", fileName);
         string[] lines = File.ReadAllLines(filePath);
         numCartas = 0;
@@ -119,22 +130,22 @@ public class CardGenerator : MonoBehaviour
             if (playerCard.SobrescribirSi == "")
                 playerCard.SobrescribirSi = "Si";
 
-            if (gameManager.cartasPorPartida[num].Personaje == "Faustino el agricultor")
+            string personaje = gameManager.cartasPorPartida[num].Personaje;
+
+            // Verificar si el personaje está en el diccionario
+            if (spritesChosen.TryGetValue(personaje, out Sprite sprite))
             {
-                newCard.GetComponent<Image>().sprite = sprites_[0];
-            }
-            else if (gameManager.cartasPorPartida[num].Personaje == "Toni el activista")
-            {
-                newCard.GetComponent<Image>().sprite = sprites_[1];
-            }
-            else if (gameManager.cartasPorPartida[num].Personaje == "Paqui Jefa de Medio Ambiente")
-            {
-                newCard.GetComponent<Image>().sprite = sprites_[2];
+                // Si el personaje está en el diccionario, asignar el sprite a la imagen
+                newCard.GetComponent<Image>().sprite = sprite;
             }
             else
             {
+                //Asigna el sprite a baltasar
                 newCard.GetComponent<Image>().sprite = sprites_[3];
+                // Manejar el caso en el que el personaje no está en el diccionario
+                Debug.LogWarning($"No se encontró el sprite para el personaje: {personaje}");
             }
+
             cartas[gameManager.cartasPorPartida[gameManager.cardsCount].CardId].Usada = true;
             gameManager.cardsCount++;
         }
@@ -146,12 +157,12 @@ public class CardGenerator : MonoBehaviour
     {
         int[] intCardsSelection = new int[7];
         intCardsSelection[0] = SelectRandomFixedCard("Agricultura");
-        intCardsSelection[1] = SelectRandomFixedCard("Deforestación"); ;
-        intCardsSelection[2] = SelectRandomFixedCard("Energía eólica"); ;
+        intCardsSelection[1] = SelectRandomFixedCard("Deforestacion"); ;
+        intCardsSelection[2] = SelectRandomFixedCard("Energia eolica"); ;
         intCardsSelection[3] = SelectRandomFixedCard("Fabrica/Economia");
         intCardsSelection[4] = SelectRandomFixedCard("Ganaderia");
-        intCardsSelection[5] = SelectRandomFixedCard("Energía Solar");
-        intCardsSelection[6] = SelectRandomFixedCard("Prevención de incendios");
+        intCardsSelection[6] = SelectRandomFixedCard("Prevencion de incendios");
+        intCardsSelection[5] = SelectRandomFixedCard("Energia Solar");
 
         System.Random rng = new System.Random();
         int n = intCardsSelection.Length;
