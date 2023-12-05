@@ -114,9 +114,6 @@ public class GameManager : MonoBehaviour
 
                 resourcesBars[i].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
             }
-
-            Debug.Log("Aqui estoy");
-
             yield return null;
         }
     }

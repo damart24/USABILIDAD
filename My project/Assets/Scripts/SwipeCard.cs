@@ -191,7 +191,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             StartCoroutine(gameManager.changeResources());
             String textoExplicativo = GetComponent<Carta>().TextoExplicativo;
 
-            if(textoExplicativo != "")
+            textoExplicativo = textoExplicativo.Replace(";", "");
+
+            if (textoExplicativo != "")
             {
                 int explanationNumber =  gameManager.lastExplanationUsed;
                 while (explanationNumber == gameManager.lastExplanationUsed)
