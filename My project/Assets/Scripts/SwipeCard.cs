@@ -9,19 +9,19 @@ using Random = UnityEngine.Random;
 
 public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    GameObject text, canvas;
+    GameObject text, canvas, anotherImage;
     //Distancia que se mueve la carta para que desaparezca
     private const float distanceDragged = 0.15f;
-    //Guarda la posición inicial
+    //Guarda la posiciï¿½n inicial
     private Vector3 iniPos_;
     //Guarda la distancia movida desde la iniPos_ hasta la distancia movida con el click en el OnDrag
     private float distancedMoved_;
     //Booleano para saber si es hacia un lado u  otro, es decir izquierda o derecha
     private bool swipeLeft_;
-    //Sprite público al que se le pasa la referencia desde secondImage
+    //Sprite pï¿½blico al que se le pasa la referencia desde secondImage
     [HideInInspector]
     public Sprite frontSprite;
-    //Evento que sucederá al hacer el volteo de la carta y hará llamar a los métodos suscritos a él
+    //Evento que sucederï¿½ al hacer el volteo de la carta y harï¿½ llamar a los mï¿½todos suscritos a ï¿½l
     public event Action cardMoved;
     private Coroutine fadeInCoroutine;
     private Coroutine fadeOutCoroutine;
@@ -31,13 +31,10 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Guarda la posInicial
     void Start()
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
-                text = transform.GetChild(i).gameObject;
-            else
-                canvas = transform.GetChild(i).gameObject;
-        }
+        text = transform.GetChild(1).gameObject;
+        canvas = transform.GetChild(0).gameObject;
+        anotherImage = transform.GetChild(2).gameObject;
+       
         iniPos_ = transform.position;
 
         canvas.SetActive(true);
@@ -47,8 +44,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
         text.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(textColor.r, textColor.g, textColor.b, 0);
     }
-    //Movemos la posición y calculamos la diferencia entre la posX actual y la original
-    //Dependiendo de esa diferencia rotará más o menos y dependiendo el lado, a la izquierda o a la derecha
+    //Movemos la posiciï¿½n y calculamos la diferencia entre la posX actual y la original
+    //Dependiendo de esa diferencia rotarï¿½ mï¿½s o menos y dependiendo el lado, a la izquierda o a la derecha
     public void OnDrag(PointerEventData eventData)
     {
         if (cardAvalaible)
@@ -134,8 +131,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         iniPos_ = transform.localPosition;
     }
-    //Al terminar el drag si se ha movido más de la mitad de la pantalla * 0.3
-    //Llama al invoke de cardMoved, sino vueve a la posición inicial y con la rotación actual
+    //Al terminar el drag si se ha movido mï¿½s de la mitad de la pantalla * 0.3
+    //Llama al invoke de cardMoved, sino vueve a la posiciï¿½n inicial y con la rotaciï¿½n actual
     public void OnEndDrag(PointerEventData eventData)
     {
         Color textColor = text.GetComponent<TMPro.TextMeshProUGUI>().color;
@@ -186,7 +183,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 swipeLeft_ = true;
             }
 
-            // Verificar si el personaje está en el diccionario
+            // Verificar si el personaje estï¿½ en el diccionario
             if (gameManager.tokens.TryGetValue(extras, out GameObject tokenGameObject))
             {
                 tokenGameObject.GetComponent<Animator>().enabled = true;
@@ -256,7 +253,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Cambia el sprite por el frontal desde un evento en el animator
     public void changeSprite()
     {
-        GetComponent<Image>().sprite = frontSprite;
+        anotherImage.GetComponent<Image>().sprite = frontSprite;
     }
     //Desactiva el animator desde un evento en el animator
     public void disableAnimator()
