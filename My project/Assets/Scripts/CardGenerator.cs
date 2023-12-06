@@ -17,12 +17,14 @@ public class CardGenerator : MonoBehaviour
     private Sprite[] sprites_;
 
     private int numCartas = 0;
+    private int cardsNumberPerGame_ = 22;
     List<Carta> cartas = new List<Carta>();
     List<Carta> cartasFijas = new List<Carta>();
     private Dictionary<string, Sprite> spritesChosen = new Dictionary<string, Sprite>();
 
     private void Start()
     {
+        cardsNumberPerGame_ = 22;
         // Asociar nombres de sprite con rutas
         spritesChosen.Add("Faustino el agricultor", sprites_[0]);
         spritesChosen.Add("Toni el activista", sprites_[1]);
@@ -79,7 +81,7 @@ public class CardGenerator : MonoBehaviour
         GameManager gameManager = GameManager.Instance;
         int num = gameManager.cardsCount;
 
-        if (num < gameManager.cartasPorPartida.Count + 2)
+        if (num < gameManager.cartasPorPartida.Count)
         {
             GameObject newCard = Instantiate(cardPrefab_, transform, false);
             newCard.transform.SetAsFirstSibling();
@@ -146,7 +148,6 @@ public class CardGenerator : MonoBehaviour
                 Debug.LogWarning($"No se encontró el sprite para el personaje: {personaje}");
             }
 
-            cartas[gameManager.cartasPorPartida[gameManager.cardsCount].CardId].Usada = true;
             gameManager.cardsCount++;
         }
         else
@@ -176,8 +177,8 @@ public class CardGenerator : MonoBehaviour
             intCardsSelection[n] = value;
         }
 
-        List<Carta> fixedCardsSelection = new List<Carta>(20);
-        for (int i = 0; i < 20; i++)
+        List<Carta> fixedCardsSelection = new List<Carta>(cardsNumberPerGame_);
+        for (int i = 0; i < cardsNumberPerGame_; i++)
         {
             fixedCardsSelection.Add(null);
         }
@@ -211,20 +212,25 @@ public class CardGenerator : MonoBehaviour
         List<Carta> cartasFiltradas = cartasFijas.FindAll(carta => carta.Tema == condicion);
 
         int indiceAleatorio = UnityEngine.Random.Range(0, cartasFiltradas.Count);
+        GameManager gameManager = GameManager.Instance;
+        cartas[cartasFiltradas[indiceAleatorio].CardId].Usada = true;
+
         return cartasFiltradas[indiceAleatorio].CardId;
     }
 
     Carta SelectRandomCard()
     {
 
-        List<Carta> cartasNoFijas = cartas.FindAll(carta => carta.Condicion != "Evento fijo");
+        //List<Carta> cartasNoFijas = cartas.FindAll(carta => carta.Condicion != "Evento fijo");
 
         int indiceAleatorio = -1;
         do
         {
-            indiceAleatorio = UnityEngine.Random.Range(0, cartasNoFijas.Count);
-        } while (cartas[indiceAleatorio].Usada || (cartas[indiceAleatorio].Condicion != "Evento fijo" && !GameManager.Instance.conditions.Contains(cartas[indiceAleatorio].Condicion)));
+            indiceAleatorio = UnityEngine.Random.Range(0, cartas.Count);
+        } while (cartas[indiceAleatorio].Usada || ((cartas[indiceAleatorio].Condicion != "" && (cartas[indiceAleatorio].Condicion != "Evento fijo" && !GameManager.Instance.conditions.Contains(cartas[indiceAleatorio].Condicion))
+        )));
 
-        return cartas[cartasNoFijas[indiceAleatorio].CardId];
+        cartas[indiceAleatorio].Usada = true;
+        return cartas[indiceAleatorio];
     }
 }
