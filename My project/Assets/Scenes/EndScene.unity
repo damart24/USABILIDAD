@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBetweenLetters: 0.05
+  escenas: IntroScene
   text: Eres el nuevo alcalde de Villa Catia,debes atender a tus ciudadanos,aceptando
     o denegando sus propuestas. Tu objetivo es que tu pueblo te vote en las proximas
     elecciones y evitar ser apartado del cargo.

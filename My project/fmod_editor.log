@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000202AACD42A8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001898158D4C8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,91 +18,10 @@
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 4876800
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 15424
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000008C5E2BF548
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9EC583F70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9EC583F30
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9EC584050
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9EC584110
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000201A192B078
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='mixkit-correct-answer-notification-947', format=5, channels=2, frequency=48000, lengthbytes=13024, lengthpcm=50924, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.784088.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 4876800
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 15424
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000008C5E2BF548
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9EC583F70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9EC583F30
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9EC584050
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9EC584110
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000201A192B078
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='mixkit-arrow-shot-through-air-2771', format=5, channels=2, frequency=48000, lengthbytes=12032, lengthpcm=50070, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.969849.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 4876800
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 15424
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000008C5E2BF548
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9EC583F70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9EC583F30
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9EC584050
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9EC584110
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000201A192B6A8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='mixkit-page-turn-single-1104', format=5, channels=2, frequency=48000, lengthbytes=6432, lengthpcm=21675, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.698853.
-[LOG] SoundI::release                          : temitaEcoSwipeGenteBajo (000002019A25ECF8)
-[LOG] SoundI::release                          :     temitaEcoSwipeGenteBajo (00000201E78385B8)
-[LOG] SoundI::release                          :     temitaEcoSwipeGenteBajo (000002027AC92D58)
-[LOG] SoundI::release                          : temitaEcoSwipeGenteAlto (000002019A25E998)
-[LOG] SoundI::release                          :     temitaEcoSwipeGenteAlto (00000201E783A978)
-[LOG] SoundI::release                          :     temitaEcoSwipeGenteAlto (000002027AC92BA8)
-[LOG] SoundI::release                          : temitaEcoSwipeDineroBajo (00000202A88CD378)
-[LOG] SoundI::release                          :     temitaEcoSwipeDineroBajo (00000201E7838278)
-[LOG] SoundI::release                          :     temitaEcoSwipeDineroBajo (000002027AC92F08)
-[LOG] SoundI::release                          : temitaEcoSwipeFaunaAlto (00000202A88CD018)
-[LOG] SoundI::release                          :     temitaEcoSwipeFaunaAlto (00000201E7839458)
-[LOG] SoundI::release                          :     temitaEcoSwipeFaunaAlto (000002027AC935C8)
-[LOG] SoundI::release                          : temitaEcoSwipeFaunaBajo (00000202A88CC958)
-[LOG] SoundI::release                          :     temitaEcoSwipeFaunaBajo (00000201E783B678)
-[LOG] SoundI::release                          :     temitaEcoSwipeFaunaBajo (000002027AC93418)
-[LOG] SoundI::release                          : temitaEcoSwipeDineroAlto (00000202A88CD1C8)
-[LOG] SoundI::release                          :     temitaEcoSwipeDineroAlto (00000201E78380D8)
-[LOG] SoundI::release                          :     temitaEcoSwipeDineroAlto (000002027AC93928)
-[LOG] SoundI::release                          : temitaEcoSwipeAire (000002019732E298)
-[LOG] SoundI::release                          :     temitaEcoSwipeAire (00000201E7839E18)
-[LOG] SoundI::release                          :     temitaEcoSwipeAire (000002027AC93268)
-[LOG] SoundI::release                          : temitaEcoSwipeFlora (000002019732E448)
-[LOG] SoundI::release                          :     temitaEcoSwipeFlora (00000201E7839118)
-[LOG] SoundI::release                          :     temitaEcoSwipeFlora (000002027AC93778)
-[LOG] SoundI::release                          :  (000002027B7AD878)
-[LOG] SoundI::release                          :     mixkit-page-turn-single-1104 (000002027241F208)
-[LOG] SoundI::release                          :  (000002027B7ADE38)
-[LOG] SoundI::release                          :     mixkit-arrow-shot-through-air-2771 (000002027241FD68)
-[LOG] SoundI::release                          :  (000002027B7ADB58)
-[LOG] SoundI::release                          :     mixkit-correct-answer-notification-947 (000002027241F6E8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
