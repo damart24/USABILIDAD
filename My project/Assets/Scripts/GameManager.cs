@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public RectTransform explanationCanvas;
     [HideInInspector]
     public Dictionary<string, GameObject> tokens = new Dictionary<string, GameObject>();
-    private int[] resources = { 50, 50, 50, 50, 50 };
+    public int[] resources = { 50, 50, 50, 50, 50 };
     int uniqueUpdate = 0;
     [HideInInspector]
     public int cardsCount = 0;
@@ -143,7 +143,6 @@ public class GameManager : MonoBehaviour
 
                 if (targetScaleY != currentScaleY)
                 {
-                    Debug.Log(resourcesBars[i].name);
                     double interpolatedScaleY = Mathf.Lerp((float)currentScaleY, (float) targetScaleY, Time.deltaTime / duration);
 
                     interpolatedScaleY = Math.Round(interpolatedScaleY, 2, MidpointRounding.ToEven);
