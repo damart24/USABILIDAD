@@ -157,6 +157,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             cardMoved?.Invoke();
             Carta carta = GetComponent<Carta>();
             GameManager gameManager = GameManager.Instance;
+            EventVariableMixer eventVariable = EventVariableMixer.Instance;
             int dinero, gente, flora, fauna, aireYAgua;
             string extras = "ficha";
 
@@ -168,7 +169,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     extras = gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasSi;
                 }
 
-
+                Instantiate(eventVariable.yesSound);
                 dinero = carta.SiDinero;
                 gente = carta.SiGente;
                 flora = carta.SiFlora;
@@ -183,6 +184,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo);
                     extras = gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo;
                 }
+                Instantiate(eventVariable.yesSound);
                 dinero = carta.NoDinero;
                 gente = carta.NoGente;
                 flora = carta.NoFlora;
@@ -194,6 +196,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             // Verificar si el personaje est� en el diccionario
             if (gameManager.tokens.TryGetValue(extras, out GameObject tokenGameObject))
             {
+                Instantiate(eventVariable.tokenSound);
                 tokenGameObject.GetComponent<Animator>().enabled = true;
                 tokenGameObject.GetComponent<Image>().enabled = true;
             }
@@ -218,6 +221,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
             if (textoExplicativo != "")
             {
+                Instantiate(eventVariable.paperSound);
                 int explanationNumber =  gameManager.lastExplanationUsed;
                 while (explanationNumber == gameManager.lastExplanationUsed)
                     explanationNumber = UnityEngine.Random.Range(0, 5);
