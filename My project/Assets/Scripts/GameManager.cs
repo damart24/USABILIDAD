@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int cardsCount = 0;
     public bool win = false;
+    [HideInInspector]
+    public bool gameWon = false;
+    [HideInInspector]
+    public int lastExplanationUsed = -1;
+    [HideInInspector]
+    public List<string> conditions;
     public static GameManager Instance
     {
         get
@@ -40,12 +46,6 @@ public class GameManager : MonoBehaviour
             return instance_;
         }
     }
-    [HideInInspector]
-    public bool gameWon = false;
-    [HideInInspector]
-    public int lastExplanationUsed = -1;
-    [HideInInspector]
-    public List<string> conditions;
 
     private void Awake()
     {
