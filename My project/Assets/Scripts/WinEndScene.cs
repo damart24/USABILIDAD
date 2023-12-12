@@ -12,7 +12,7 @@ public class WinEndScene : MonoBehaviour
     void Start()
     {
         animator = GetComponent<TextAnimator>();
-        if (GameManager.Instance.gameWon) animator.text = winOver;
+        if (GameManager.Instance.win) animator.text = winOver;
         else animator.text = gameOver;
 
 

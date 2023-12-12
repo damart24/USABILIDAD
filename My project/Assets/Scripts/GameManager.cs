@@ -74,9 +74,31 @@ public class GameManager : MonoBehaviour
                 }
                 uniqueUpdate++;
             }
+            Perder();
+            if (gameWon)
+            {
+                win = true;
+                resetGame();
+                MySceneManager.Instance.LoadScene("EndScene");
+            }
         }
         else if (uniqueUpdate > 0)
             resetGame();
+       
+    }
+    public void Perder()
+    {
+        for(int i = 0; i < resources.Length; i++)
+        {
+            if (resources[i] <= 0) {
+                win = false;
+              
+                resetGame();
+              
+                MySceneManager.Instance.LoadScene("EndScene");
+            }
+        }
+ 
     }
 
     public void AddResource(int resource, int value)
