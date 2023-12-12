@@ -32,7 +32,7 @@ public class CardGenerator : MonoBehaviour
         spritesChosen.Add("Baltasar el empresario", sprites_[3]);
         spritesChosen.Add("Eli agente forestal", sprites_[4]);
         spritesChosen.Add("Rodrigo el Biologo", sprites_[5]);
-        spritesChosen.Add("Laura la arquitecto", sprites_[3]);
+        spritesChosen.Add("Laura la arquitecto", sprites_[6]);
 
         string filePath = Path.Combine("Assets", "CSV", fileName);
         string[] lines = File.ReadAllLines(filePath);
@@ -143,7 +143,7 @@ public class CardGenerator : MonoBehaviour
             else
             {
                 //Asigna el sprite a baltasar
-                newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprites_[3];
+                newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprites_[0];
                 // Manejar el caso en el que el personaje no está en el diccionario
                 Debug.LogWarning($"No se encontró el sprite para el personaje: {personaje}");
             }

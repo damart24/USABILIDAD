@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -111,11 +112,22 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < resources.Length; i++)
             {
-                float targetScaleY = (float)resources[i] / 100;
-                float currentScaleY = resourcesBars[i].transform.localScale.y;
-                float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, Time.deltaTime / duration);
+                double targetScaleY = (float)resources[i] / 100;
+                double currentScaleY = resourcesBars[i].transform.localScale.y;
 
-                resourcesBars[i].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+                targetScaleY = Math.Round(targetScaleY, 2, MidpointRounding.ToEven);
+                currentScaleY = Math.Round(currentScaleY, 2, MidpointRounding.ToEven);
+
+
+                if (targetScaleY != currentScaleY)
+                {
+                    Debug.Log(resourcesBars[i].name);
+                    double interpolatedScaleY = Mathf.Lerp((float)currentScaleY, (float) targetScaleY, Time.deltaTime / duration);
+
+                    interpolatedScaleY = Math.Round(interpolatedScaleY, 2, MidpointRounding.ToEven);
+
+                    resourcesBars[i].transform.localScale = new Vector3(1, (float)interpolatedScaleY, 1);
+                }
             }
             yield return null;
         }
