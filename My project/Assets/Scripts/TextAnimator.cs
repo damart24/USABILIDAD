@@ -8,9 +8,18 @@ public class TextAnimator : MonoBehaviour
     private TextMeshProUGUI textMeshPro;
     public string escenas = "GameScene";
     public string text;
+    string gameOver = "Has sido destetuido de tu cargo ,no has gestionado los recursos.Espabila para la proxima vez.";
+    string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
+    
 
     void Start()
     {
+        if (MySceneManager.Instance.getActiveSceneName() == "EndScene")
+        {
+            if (GameManager.Instance.win) text = winOver;
+            else text = gameOver;
+        }
+        
         textMeshPro = GetComponent<TextMeshProUGUI>();
         StartCoroutine(AnimateText(text));
     }

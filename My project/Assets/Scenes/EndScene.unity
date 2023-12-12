@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 552051242}
   - component: {fileID: 552051241}
   - component: {fileID: 552051240}
+  - component: {fileID: 552051243}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -353,9 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBetweenLetters: 0.05
   escenas: IntroScene
-  text: Eres el nuevo alcalde de Villa Catia,debes atender a tus ciudadanos,aceptando
-    o denegando sus propuestas. Tu objetivo es que tu pueblo te vote en las proximas
-    elecciones y evitar ser apartado del cargo.
+  text: 
 --- !u!114 &552051241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +452,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552051238}
   m_CullTransparentMesh: 1
+--- !u!114 &552051243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552051238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4212b8f11e15b2042998211c6b08aaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &677036203
 PrefabInstance:
   m_ObjectHideFlags: 0

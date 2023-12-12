@@ -73,16 +73,17 @@ public class GameManager : MonoBehaviour
                 }
                 uniqueUpdate++;
             }
+            Perder();
+            if (gameWon)
+            {
+                win = true;
+                resetGame();
+                MySceneManager.Instance.LoadScene("EndScene");
+            }
         }
         else if (uniqueUpdate > 0)
             resetGame();
-        Perder();
-        if (gameWon)
-        {
-            win = true;
-            resetGame();
-            MySceneManager.Instance.LoadScene("EndScene");
-        }
+       
     }
     public void Perder()
     {
@@ -90,9 +91,9 @@ public class GameManager : MonoBehaviour
         {
             if (resources[i] <= 0) {
                 win = false;
-                Debug.Log("COJONES");
+              
                 resetGame();
-                resources[i] = 50;
+              
                 MySceneManager.Instance.LoadScene("EndScene");
             }
         }
