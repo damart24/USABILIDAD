@@ -128,6 +128,12 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator changeResources()
     {
+        for (int i = 0; i < resources.Length; i++)
+        {
+            print(resources[i] + ", ");
+        }
+
+        print("\n");
         float duration = 0.3f;
 
         while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
