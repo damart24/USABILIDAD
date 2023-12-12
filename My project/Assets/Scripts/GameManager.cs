@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     int uniqueUpdate = 0;
     [HideInInspector]
     public int cardsCount = 0;
-
+    public bool win = false;
     public static GameManager Instance
     {
         get

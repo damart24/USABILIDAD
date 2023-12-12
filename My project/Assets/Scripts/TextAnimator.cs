@@ -6,8 +6,8 @@ public class TextAnimator : MonoBehaviour
 {
     public float delayBetweenLetters = 0.05f;  // Tiempo de espera entre letras
     private TextMeshProUGUI textMeshPro;
-    [SerializeField]
-    string text;
+    public string escenas = "GameScene";
+    public string text;
 
     void Start()
     {
@@ -24,6 +24,6 @@ public class TextAnimator : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenLetters);
         }
         yield return new WaitForSeconds(3f); // Puedes ajustar el tiempo de espera antes de cambiar de escena
-        MySceneManager.Instance.LoadScene("GameScene");
+        MySceneManager.Instance.LoadScene(escenas);
     }
 }
