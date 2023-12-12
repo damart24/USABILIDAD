@@ -184,7 +184,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     gameManager.conditions.Add(gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo);
                     extras = gameManager.cartasPorPartida[gameManager.cardsCount - 3].ExtrasNo;
                 }
-                Instantiate(eventVariable.yesSound);
+                Instantiate(eventVariable.noSound);
                 dinero = carta.NoDinero;
                 gente = carta.NoGente;
                 flora = carta.NoFlora;

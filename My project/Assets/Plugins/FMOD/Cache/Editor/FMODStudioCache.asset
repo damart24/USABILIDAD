@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8739668405518515456
+--- !u!114 &-8350299429143157764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16,7 +16,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 271825141
     data2: 3835853556
@@ -40,7 +40,31 @@ MonoBehaviour:
   StudioPath: parameter:/Aire
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
+  ID:
+    data1: 587878339
+    data2: 4255319846
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-7180289489755851182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Musica/Aire
+  m_EditorClassIdentifier: 
+  Name: Aire
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 50
   ID:
     data1: 587878339
     data2: 4255319846
@@ -64,7 +88,7 @@ MonoBehaviour:
   StudioPath: parameter:/Gente
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 271825141
     data2: 3835853556
@@ -72,7 +96,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-3948893796440837795
+--- !u!114 &-5544732717766612731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +120,11 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -8739668405518515456}
-  - {fileID: 9083749558217689278}
-  - {fileID: 3639457573564075807}
-  - {fileID: 644871768729314669}
-  - {fileID: 5641262404745639736}
+  - {fileID: -8350299429143157764}
+  - {fileID: -2521139012929304909}
+  - {fileID: -7180289489755851182}
+  - {fileID: 5132687287786251008}
+  - {fileID: 6299837795308713717}
   MinDistance: 1
   MaxDistance: 20
   Length: 45176
@@ -119,7 +143,7 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638379878762424869
+  lastModified: 638380124973146352
   FileSizes:
   - Name: Desktop
     Value: 1120
@@ -139,7 +163,7 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638379878762394875
+  lastModified: 638380124973105356
   FileSizes:
   - Name: Desktop
     Value: 4892224
@@ -171,6 +195,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1141
+--- !u!114 &-2521139012929304909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Musica/Flora
+  m_EditorClassIdentifier: 
+  Name: Flora
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 50
+  ID:
+    data1: 454123815
+    data2: 549095972
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-1221960732327227470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,33 +246,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1543
---- !u!114 &-697405407188642799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/No
-  m_EditorClassIdentifier: 
-  Path: event:/No
-  Guid:
-    Data1: 1723291847
-    Data2: 1190011231
-    Data3: -2083600735
-    Data4: -656655007
-  Banks:
-  - {fileID: -3058615672499405417}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1543
 --- !u!114 &-208552979268982024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +262,7 @@ MonoBehaviour:
   StudioPath: parameter:/Flora
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 454123815
     data2: 549095972
@@ -266,10 +287,10 @@ MonoBehaviour:
   - {fileID: -3058615672499405417}
   EditorEvents:
   - {fileID: -3012782728217505540}
-  - {fileID: -3948893796440837795}
   - {fileID: -1221960732327227470}
   - {fileID: 2904753558877631121}
-  - {fileID: -697405407188642799}
+  - {fileID: -5544732717766612731}
+  - {fileID: 7861006871688979290}
   EditorParameters:
   - {fileID: 5306363703165581408}
   - {fileID: -208552979268982024}
@@ -280,32 +301,8 @@ MonoBehaviour:
   - {fileID: -3058615672499405417}
   StringsBanks:
   - {fileID: -3942587287412938678}
-  cacheTime: 638379878762424869
+  cacheTime: 638380124973146352
   cacheVersion: 131609
---- !u!114 &644871768729314669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Musica/Fauna
-  m_EditorClassIdentifier: 
-  Name: Fauna
-  StudioPath: 
-  Min: 0
-  Max: 100
-  Default: 0
-  ID:
-    data1: 261094860
-    data2: 3283490563
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &1756848873638006477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +319,7 @@ MonoBehaviour:
   StudioPath: parameter:/Fauna
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 261094860
     data2: 3283490563
@@ -357,7 +354,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 451
---- !u!114 &3639457573564075807
+--- !u!114 &5132687287786251008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,16 +364,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Musica/Aire
+  m_Name: parameter:/Musica/Fauna
   m_EditorClassIdentifier: 
-  Name: Aire
+  Name: Fauna
   StudioPath: 
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
-    data1: 587878339
-    data2: 4255319846
+    data1: 261094860
+    data2: 3283490563
   Type: 0
   IsGlobal: 1
   Labels: []
@@ -397,7 +394,7 @@ MonoBehaviour:
   StudioPath: parameter:/Dinero
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 3582948122
     data2: 1661939322
@@ -405,7 +402,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &5641262404745639736
+--- !u!114 &6299837795308713717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,7 +418,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 100
-  Default: 0
+  Default: 50
   ID:
     data1: 3582948122
     data2: 1661939322
@@ -429,7 +426,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &9083749558217689278
+--- !u!114 &7861006871688979290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,18 +435,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Musica/Flora
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/No
   m_EditorClassIdentifier: 
-  Name: Flora
-  StudioPath: 
-  Min: 0
-  Max: 100
-  Default: 0
-  ID:
-    data1: 454123815
-    data2: 549095972
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
+  Path: event:/No
+  Guid:
+    Data1: 1723291847
+    Data2: 1190011231
+    Data3: -2083600735
+    Data4: -656655007
+  Banks:
+  - {fileID: -3058615672499405417}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1543

@@ -52,6 +52,6 @@ public class EventVariableMixer : MonoBehaviour
     }
     public void setMusicParameter(string parameterName, int number)
     {
-        musicEventInstance.setParameterByName(parameterName, number);
+        musicEventInstance.setParameterByName(parameterName, 0);
     }
 }
