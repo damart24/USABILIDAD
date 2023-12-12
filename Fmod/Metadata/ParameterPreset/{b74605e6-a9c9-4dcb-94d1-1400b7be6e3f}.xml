@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{b74605e6-a9c9-4dcb-94d1-1400b7be6e3f}">
+		<property name="name">
+			<value>Fauna</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bc75d26d-0f3b-4fc2-ae43-ffc5a4f3d52a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{285587f9-4198-49fe-8205-50839a8d102d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{285587f9-4198-49fe-8205-50839a8d102d}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
