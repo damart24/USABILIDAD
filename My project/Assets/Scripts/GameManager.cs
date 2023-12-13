@@ -137,40 +137,44 @@ public class GameManager : MonoBehaviour
 
         float duration = 0.3f;
         float threshold = 0.01f; // Umbral de diferencia permitido
+        bool shouldContinue = true;
 
         while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
             for (int i = 0; i < resources.Length; i++)
             {
-                double targetScaleY = (float)resources[i] / 100;
-                double currentScaleY = resourcesBars[i].transform.localScale.y;
+                float targetScaleY = (float)resources[i] / 100;
+                float currentScaleY = resourcesBars[i].transform.localScale.y;
 
-                if (Mathf.Abs((float)targetScaleY - (float)currentScaleY) > threshold)
+                if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
                 {
-                    double interpolatedScaleY = Mathf.Lerp((float)currentScaleY, (float)targetScaleY, Time.time / duration);
+                    float elapsed = 0f;
+                    while (shouldContinue)
+                    {
+                        elapsed += Time.deltaTime;
 
-                    resourcesBars[i].transform.localScale = new Vector3(1, (float)interpolatedScaleY, 1);
+                        float t = Mathf.Clamp01(elapsed / duration);
+                        float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+
+                        if (elapsed < duration)
+                            resourcesBars[i].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+                        else
+                        {
+                            Debug.Log("Entro concha");
+                            resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
+                            shouldContinue = false;
+                        }
+
+                        yield return null;
+                    }
+                }
+                else
+                {
+                    resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
+                    yield return null;
                 }
             }
-            yield return null;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     void resetGame()
     {
