@@ -24,16 +24,17 @@ public class EventVariableMixer : MonoBehaviour
     }
     private void Awake()
     {
-        if (instance_ == null)
+        if (instance_ != null && instance_ != this)
         {
-            instance_ = this;
+            // Ya hay una instancia existente, destruye esta
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            // Establece esta instancia como la instancia única
+            instance_ = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -50,8 +51,16 @@ public class EventVariableMixer : MonoBehaviour
 
         musicEventInstance.release();
     }
-    public void setMusicParameter(string parameterName, int number)
+    public void setMusicParameter(string parameterName, float number)
     {
         musicEventInstance.setParameterByName(parameterName, number);
+
+
+    }
+    public float getMusicParameter(string parameterName)
+    {
+        float number = 0;
+        musicEventInstance.getParameterByName(parameterName, out number);
+        return number;
     }
 }

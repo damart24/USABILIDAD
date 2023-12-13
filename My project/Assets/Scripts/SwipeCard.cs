@@ -214,15 +214,16 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             if (aireYAgua != 0)
                 gameManager.AddResource(4, aireYAgua);
 
+            StartCoroutine(gameManager.changeResources());
+
             EventVariableMixer eventVariableMixer = EventVariableMixer.Instance;
 
-            eventVariableMixer.setMusicParameter("Dinero", (int)(GameManager.Instance.resources[0]));
-            eventVariableMixer.setMusicParameter("Gente", (int)(GameManager.Instance.resources[1]));
-            eventVariableMixer.setMusicParameter("Fauna", (int)(GameManager.Instance.resources[2]));
-            eventVariableMixer.setMusicParameter("Flora", (int)(GameManager.Instance.resources[3]));
-            eventVariableMixer.setMusicParameter("Aire", (int)(GameManager.Instance.resources[4]));
+            eventVariableMixer.setMusicParameter("Dinero", GameManager.Instance.resources[0]);
+            eventVariableMixer.setMusicParameter("Gente", GameManager.Instance.resources[1]);
+            eventVariableMixer.setMusicParameter("Fauna", GameManager.Instance.resources[2]);
+            eventVariableMixer.setMusicParameter("Flora", GameManager.Instance.resources[3]);
+            eventVariableMixer.setMusicParameter("Aire", GameManager.Instance.resources[4]);
 
-            StartCoroutine(gameManager.changeResources());
             String textoExplicativo = GetComponent<Carta>().TextoExplicativo;
 
             textoExplicativo = textoExplicativo.Replace(";", "");

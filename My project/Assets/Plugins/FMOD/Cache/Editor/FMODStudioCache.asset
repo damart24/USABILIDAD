@@ -21,31 +21,7 @@ MonoBehaviour:
     data1: 271825141
     data2: 3835853556
   Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-8009906954787850305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Aire
-  m_EditorClassIdentifier: 
-  Name: Aire
-  StudioPath: parameter:/Aire
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 587878339
-    data2: 4255319846
-  Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-7180289489755851182
@@ -69,31 +45,7 @@ MonoBehaviour:
     data1: 587878339
     data2: 4255319846
   Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-6368042432305051929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Gente
-  m_EditorClassIdentifier: 
-  Name: Gente
-  StudioPath: parameter:/Gente
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 271825141
-    data2: 3835853556
-  Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-5544732717766612731
@@ -143,7 +95,7 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638380159218462834
+  lastModified: 638380708463879945
   FileSizes:
   - Name: Desktop
     Value: 1120
@@ -163,10 +115,10 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638380159218437747
+  lastModified: 638380708463850071
   FileSizes:
   - Name: Desktop
-    Value: 4892224
+    Value: 4891872
   Exists: 1
 --- !u!114 &-3012782728217505540
 MonoBehaviour:
@@ -216,7 +168,7 @@ MonoBehaviour:
     data1: 454123815
     data2: 549095972
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-1221960732327227470
@@ -246,30 +198,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1543
---- !u!114 &-208552979268982024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Flora
-  m_EditorClassIdentifier: 
-  Name: Flora
-  StudioPath: parameter:/Flora
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 454123815
-    data2: 549095972
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,42 +219,13 @@ MonoBehaviour:
   - {fileID: 2904753558877631121}
   - {fileID: -5544732717766612731}
   - {fileID: 7861006871688979290}
-  EditorParameters:
-  - {fileID: 5306363703165581408}
-  - {fileID: -208552979268982024}
-  - {fileID: -6368042432305051929}
-  - {fileID: -8009906954787850305}
-  - {fileID: 1756848873638006477}
+  EditorParameters: []
   MasterBanks:
   - {fileID: -3058615672499405417}
   StringsBanks:
   - {fileID: -3942587287412938678}
-  cacheTime: 638380159218462834
+  cacheTime: 638380708463879945
   cacheVersion: 131609
---- !u!114 &1756848873638006477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fauna
-  m_EditorClassIdentifier: 
-  Name: Fauna
-  StudioPath: parameter:/Fauna
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 261094860
-    data2: 3283490563
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &2904753558877631121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,31 +274,7 @@ MonoBehaviour:
     data1: 261094860
     data2: 3283490563
   Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &5306363703165581408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Dinero
-  m_EditorClassIdentifier: 
-  Name: Dinero
-  StudioPath: parameter:/Dinero
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 3582948122
-    data2: 1661939322
-  Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &6299837795308713717
@@ -423,7 +298,7 @@ MonoBehaviour:
     data1: 3582948122
     data2: 1661939322
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &7861006871688979290
