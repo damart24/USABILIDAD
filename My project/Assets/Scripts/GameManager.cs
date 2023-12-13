@@ -134,7 +134,9 @@ public class GameManager : MonoBehaviour
         }
 
         print("\n");
+
         float duration = 0.3f;
+        float threshold = 0.01f; // Umbral de diferencia permitido
 
         while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
@@ -143,21 +145,32 @@ public class GameManager : MonoBehaviour
                 double targetScaleY = (float)resources[i] / 100;
                 double currentScaleY = resourcesBars[i].transform.localScale.y;
 
-                targetScaleY = Math.Round(targetScaleY, 2, MidpointRounding.ToEven);
-                currentScaleY = Math.Round(currentScaleY, 2, MidpointRounding.ToEven);
-
-
-                if (targetScaleY != currentScaleY)
+                if (Mathf.Abs((float)targetScaleY - (float)currentScaleY) > threshold)
                 {
-                    double interpolatedScaleY = Mathf.Lerp((float)currentScaleY, (float) targetScaleY, Time.deltaTime / duration);
-
-                    interpolatedScaleY = Math.Round(interpolatedScaleY, 2, MidpointRounding.ToEven);
+                    double interpolatedScaleY = Mathf.Lerp((float)currentScaleY, (float)targetScaleY, Time.time / duration);
 
                     resourcesBars[i].transform.localScale = new Vector3(1, (float)interpolatedScaleY, 1);
                 }
             }
             yield return null;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     void resetGame()
     {
