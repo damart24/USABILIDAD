@@ -9,12 +9,21 @@ public class WinEndScene : MonoBehaviour
     string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
     TextAnimator animator;
 
+    [SerializeField] GameObject winSound, loseSound;
+
     void Start()
     {
         animator = GetComponent<TextAnimator>();
-        if (GameManager.Instance.win) animator.text = winOver;
-        else animator.text = gameOver;
-
+        if (GameManager.Instance.win)
+        {
+            animator.text = winOver;
+            Instantiate(winSound);
+        }
+        else
+        {
+            animator.text = gameOver;
+            Instantiate(loseSound);
+        }
 
     }
 }
