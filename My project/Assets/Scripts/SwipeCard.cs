@@ -204,17 +204,32 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             gameManager.hideAllIcons();
 
             if(dinero != 0)
+            {
                 gameManager.AddResource(0, dinero);
+                StartCoroutine(gameManager.changeMoney());
+            }
             if (gente != 0)
+            {
                 gameManager.AddResource(1, gente);
+                StartCoroutine(gameManager.changePeople());
+            }
             if (flora != 0)
+            {
                 gameManager.AddResource(2, flora);
+                StartCoroutine(gameManager. changeFlora());
+            }
             if (fauna != 0)
+            {
                 gameManager.AddResource(3, fauna);
+                StartCoroutine(gameManager.changeFauna());
+            }
             if (aireYAgua != 0)
+            {
                 gameManager.AddResource(4, aireYAgua);
+                StartCoroutine(gameManager.changeAirAndWater());
+            }
 
-            StartCoroutine(gameManager.changeResources());
+            gameManager.updateResources();
 
             EventVariableMixer eventVariableMixer = EventVariableMixer.Instance;
 

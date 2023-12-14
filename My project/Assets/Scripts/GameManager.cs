@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public int lastExplanationUsed = -1;
     [HideInInspector]
     public List<string> conditions;
+    [HideInInspector]
+    public float duration = 0;
     public static GameManager Instance
     {
         get
@@ -47,7 +49,6 @@ public class GameManager : MonoBehaviour
             return instance_;
         }
     }
-
     private void Awake()
     {
         if (instance_ == null)
@@ -59,9 +60,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        duration = 0.3f;
+
         DontDestroyOnLoad(gameObject);
     }
-
     private void Update()
     {
         if (MySceneManager.Instance.getActiveSceneName() == "GameScene")
@@ -100,7 +102,6 @@ public class GameManager : MonoBehaviour
         }
  
     }
-
     public void AddResource(int resource, int value)
     {
         resources[resource] += value;
@@ -110,14 +111,12 @@ public class GameManager : MonoBehaviour
         else if (resources[resource] < 0)
             resources[resource] = 0;
     }
-
     public void showIcon(int resource, int value)
     {
         imageArray[resource].gameObject.SetActive(true);
         if (Mathf.Abs(value) >= 15) imageArray[resource].sprite = circleSprites[1];
         else imageArray[resource].sprite = circleSprites[0];
     }
-
     public void hideAllIcons()
     {
         for (int i = 0; i < imageArray.Length; i++)
@@ -125,56 +124,145 @@ public class GameManager : MonoBehaviour
             imageArray[i].gameObject.SetActive(false);
         }
     }
-
-    public IEnumerator changeResources()
+    public IEnumerator changeMoney()
     {
-        for (int i = 0; i < resources.Length; i++)
-        {
-            print(resources[i] + ", ");
-        }
-
-        print("\n");
-
-        float duration = 0.3f;
         float threshold = 0.01f; // Umbral de diferencia permitido
-        bool shouldContinue = true;
 
         while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
-            for (int i = 0; i < resources.Length; i++)
+            float targetScaleY = (float)resources[0] / 100;
+            float currentScaleY = resourcesBars[0].transform.localScale.y;
+
+            if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
             {
-                float targetScaleY = (float)resources[i] / 100;
-                float currentScaleY = resourcesBars[i].transform.localScale.y;
-
-                if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
+                float elapsed = 0f;
+                while (elapsed < duration)
                 {
-                    float elapsed = 0f;
-                    while (shouldContinue)
-                    {
-                        elapsed += Time.deltaTime;
+                    elapsed += Time.deltaTime;
 
-                        float t = Mathf.Clamp01(elapsed / duration);
-                        float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
 
-                        if (elapsed < duration)
-                            resourcesBars[i].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
-                        else
-                        {
-                            Debug.Log("Entro concha");
-                            resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
-                            shouldContinue = false;
-                        }
-
-                        yield return null;
-                    }
-                }
-                else
-                {
-                    resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
+                    resourcesBars[0].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+                    
                     yield return null;
                 }
             }
+            yield return null;
         }
+        yield return null;
+    }
+    public IEnumerator changePeople()
+    {
+        float threshold = 0.01f; // Umbral de diferencia permitido
+
+        while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
+        {
+            float targetScaleY = (float)resources[1] / 100;
+            float currentScaleY = resourcesBars[1].transform.localScale.y;
+
+            if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
+            {
+                float elapsed = 0f;
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+
+                    resourcesBars[1].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+
+                    yield return null;
+                }
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+    public IEnumerator changeFlora()
+    {
+        float threshold = 0.01f; // Umbral de diferencia permitido
+
+        while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
+        {
+            float targetScaleY = (float)resources[2] / 100;
+            float currentScaleY = resourcesBars[2].transform.localScale.y;
+
+            if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
+            {
+                float elapsed = 0f;
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+
+                    resourcesBars[2].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+
+                    yield return null;
+                }
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+    public IEnumerator changeFauna()
+    {
+        float threshold = 0.01f; // Umbral de diferencia permitido
+
+        while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
+        {
+            float targetScaleY = (float)resources[3] / 100;
+            float currentScaleY = resourcesBars[3].transform.localScale.y;
+
+            if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
+            {
+                float elapsed = 0f;
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+
+                    resourcesBars[3].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+
+                    yield return null;
+                }
+            }
+            yield return null;
+        }
+        yield return null;
+    }
+    public IEnumerator changeAirAndWater()
+    {
+        float threshold = 0.01f; // Umbral de diferencia permitido
+
+        while (MySceneManager.Instance.getActiveSceneName() == "GameScene")
+        {
+            float targetScaleY = (float)resources[4] / 100;
+            float currentScaleY = resourcesBars[4].transform.localScale.y;
+
+            if (Mathf.Abs(targetScaleY - currentScaleY) > threshold)
+            {
+                float elapsed = 0f;
+                while (elapsed < duration)
+                {
+                    elapsed += Time.deltaTime;
+
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    float interpolatedScaleY = Mathf.Lerp(currentScaleY, targetScaleY, t);
+
+                    resourcesBars[4].transform.localScale = new Vector3(1, interpolatedScaleY, 1);
+
+                    yield return null;
+                }
+            }
+            yield return null;
+        }
+        yield return null;
     }
     void resetGame()
     {
@@ -182,5 +270,18 @@ public class GameManager : MonoBehaviour
         cardsCount = 0;
         gameWon = false;
         lastExplanationUsed = -1;
+    }
+    public void updateResources()
+    {
+        Invoke("FixResources", duration + 0.02f);
+    }
+    private void FixResources()
+    {
+        GameManager gameManager = GameManager.Instance;
+        for (int i = 0; i < gameManager.resources.Length; i++)
+        {
+            float targetScaleY = (float)gameManager.resources[i] / 100;
+            gameManager.resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
+        }
     }
 }
