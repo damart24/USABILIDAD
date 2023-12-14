@@ -33,6 +33,10 @@ public class CardGenerator : MonoBehaviour
         spritesChosen.Add("Eli agente forestal", sprites_[4]);
         spritesChosen.Add("Rodrigo el Biologo", sprites_[5]);
         spritesChosen.Add("Laura la arquitecto", sprites_[6]);
+        spritesChosen.Add("Faustino el ganadero", sprites_[7]);
+        spritesChosen.Add("Faustino el cazador", sprites_[8]);
+
+
 
         string filePath = Path.Combine("Assets", "CSV", fileName);
         string[] lines = File.ReadAllLines(filePath);
