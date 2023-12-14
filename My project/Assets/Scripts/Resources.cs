@@ -13,7 +13,7 @@ public class Resources : MonoBehaviour
     public RectTransform explanationCanvas;
     public string[] tokensNames = new string[3];
     public GameObject[] tokens = new GameObject[3];
-    private void Start()
+    private void Awake()
     {
         GameManager gameManager = GameManager.Instance;
         for (int i = 0; i < resourcesBars.Length; i++)
@@ -38,5 +38,6 @@ public class Resources : MonoBehaviour
         {
             gameManager.tokens.Add(tokensNames[i], tokens[i]);
         }
+        gameManager.resetGame();
     }
 }

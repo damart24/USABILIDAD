@@ -523,6 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212b8f11e15b2042998211c6b08aaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winSound: {fileID: 375441257348711571, guid: 1d0dddbba66290a41a6b620077bad56b, type: 3}
+  loseSound: {fileID: 375441257348711571, guid: af7b10cc75556bd47ad3579c597e2ad0, type: 3}
 --- !u!1001 &677036203
 PrefabInstance:
   m_ObjectHideFlags: 0

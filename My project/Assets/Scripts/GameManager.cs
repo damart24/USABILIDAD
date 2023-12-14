@@ -84,8 +84,6 @@ public class GameManager : MonoBehaviour
                 MySceneManager.Instance.LoadScene("EndScene");
             }
         }
-        else if (uniqueUpdate > 0)
-            resetGame();
        
     }
     public void Perder()
@@ -94,13 +92,10 @@ public class GameManager : MonoBehaviour
         {
             if (resources[i] <= 0) {
                 win = false;
-              
                 resetGame();
-              
                 MySceneManager.Instance.LoadScene("EndScene");
             }
         }
- 
     }
     public void AddResource(int resource, int value)
     {
@@ -264,13 +259,6 @@ public class GameManager : MonoBehaviour
         }
         yield return null;
     }
-    void resetGame()
-    {
-        uniqueUpdate = 0;
-        cardsCount = 0;
-        gameWon = false;
-        lastExplanationUsed = -1;
-    }
     public void updateResources()
     {
         Invoke("FixResources", duration + 0.02f);
@@ -283,5 +271,30 @@ public class GameManager : MonoBehaviour
             float targetScaleY = (float)gameManager.resources[i] / 100;
             gameManager.resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
         }
+    }
+    public void resetGame()
+    {
+        CancelInvoke();
+        for (int i = 0; i < resources.Length; i++)
+        {
+            resources[i] = 50;
+        }
+        cartasPorPartida.Clear();
+        tokens.Clear();
+        uniqueUpdate = 0;
+        cardsCount = 0;
+        win = false;
+        conditions.Clear();
+        gameWon = false;
+        lastExplanationUsed = -1;
+    }
+    public void resetMusic()
+    {
+        EventVariableMixer eventVariableMixer = EventVariableMixer.Instance;
+        eventVariableMixer.setMusicParameter("Dinero", 50);
+        eventVariableMixer.setMusicParameter("Gente", 50);
+        eventVariableMixer.setMusicParameter("Fauna", 50);
+        eventVariableMixer.setMusicParameter("Flora", 50);
+        eventVariableMixer.setMusicParameter("Aire", 50);
     }
 }

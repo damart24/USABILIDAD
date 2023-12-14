@@ -73,7 +73,6 @@ public class CardGenerator : MonoBehaviour
         cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
         GameManager.Instance.cartasPorPartida = GenerateFixedCardsSelection();
     }
-
     //Instancia la nueva carta que estará detrás del mazo
     //Le pone como primer hijo y cambia su sprite por un sprite aleatorio
     public void InstantiateCard()
@@ -153,7 +152,6 @@ public class CardGenerator : MonoBehaviour
         else
             GameManager.Instance.gameWon = true;
     }
-
     public List<Carta> GenerateFixedCardsSelection()
     {
         int[] intCardsSelection = new int[7];
@@ -206,7 +204,6 @@ public class CardGenerator : MonoBehaviour
 
         return fixedCardsSelection;
     }
-
     int SelectRandomFixedCard(string condicion)
     {
         List<Carta> cartasFiltradas = cartasFijas.FindAll(carta => carta.Tema == condicion);
@@ -217,7 +214,6 @@ public class CardGenerator : MonoBehaviour
 
         return cartasFiltradas[indiceAleatorio].CardId;
     }
-
     Carta SelectRandomCard()
     {
 
