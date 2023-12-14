@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinEndScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    string gameOver = "Has sido destetuido de tu cargo ,no has gestionado los recursos.Espabila para la proxima vez.";
+    string gameOver = "Has sido destituido de tu cargo, no has gestionado los recursos. Espabila para la proxima vez.";
     string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
     TextAnimator animator;
 
