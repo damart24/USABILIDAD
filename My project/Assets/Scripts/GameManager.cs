@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Dictionary<string, GameObject> tokens = new Dictionary<string, GameObject>();
     public int[] resources = { 50, 50, 50, 50, 50 };
-    int uniqueUpdate = 0;
     [HideInInspector]
     public int cardsCount = 0;
     [HideInInspector]
@@ -77,14 +76,6 @@ public class GameManager : MonoBehaviour
     {
         if (MySceneManager.Instance.getActiveSceneName() == "GameScene")
         {
-            if (uniqueUpdate <= 0)
-            {
-                for (int i = 0; i < resources.Length; i++)
-                {
-                    resourcesBars[i].transform.localScale = new Vector3(1, (float)resources[i] / 100, 1);
-                }
-                uniqueUpdate++;
-            }
             Perder();
             if (gameWon)
             {
@@ -286,16 +277,20 @@ public class GameManager : MonoBehaviour
         CancelInvoke();
         for (int i = 0; i < resources.Length; i++)
         {
+            resourcesBars[i].transform.localScale = new Vector3(1, (float)resources[i] / 100, 1);
+        }
+        for (int i = 0; i < resources.Length; i++)
+        {
             resources[i] = 50;
         }
         if(gameAnswers !=  null)
             gameAnswers.Clear();
         cartasPorPartida.Clear();
         tokens.Clear();
-        uniqueUpdate = 0;
         cardsCount = 0;
         win = false;
-        conditions.Clear();
+        if(conditions != null)
+            conditions.Clear();
         gameWon = false;
         lastExplanationUsed = -1;
     }

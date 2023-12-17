@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Carta : MonoBehaviour, System.ICloneable
+public class Carta : MonoBehaviour
 {
     [HideInInspector]
     public int CardId;
@@ -49,36 +49,6 @@ public class Carta : MonoBehaviour, System.ICloneable
     public string ExtrasNo;
     [HideInInspector]
     public string TextoExplicativo;
-    public object Clone()
-    {
-        return new Carta
-        {
-            // Copia de las propiedades simples
-            CardId = this.CardId,
-            Usada = this.Usada,
-            Tema = this.Tema,
-            Nombre = this.Nombre,
-            Personaje = this.Personaje,
-            Pregunta = this.Pregunta,
-            Condicion = this.Condicion,
-            Probabilidad = this.Probabilidad,
-            SobrescribirSi = this.SobrescribirSi,
-            SiDinero = this.SiDinero,
-            SiGente = this.SiGente,
-            SiFlora = this.SiFlora,
-            SiFauna = this.SiFauna,
-            SiAire = this.SiAire,
-            ExtrasSi = this.ExtrasSi,
-            SobrescribeNo = this.SobrescribeNo,
-            NoDinero = this.NoDinero,
-            NoGente = this.NoGente,
-            NoFlora = this.NoFlora,
-            NoFauna = this.NoFauna,
-            NoAire = this.NoAire,
-            ExtrasNo = this.ExtrasNo,
-            TextoExplicativo = this.TextoExplicativo
-        };
-    }
 }
 
 

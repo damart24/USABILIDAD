@@ -36,9 +36,8 @@ public class CardGenerator : MonoBehaviour
         spritesChosen.Add("Faustino el ganadero", sprites_[7]);
         spritesChosen.Add("Faustino el cazador", sprites_[8]);
 
+        string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
-
-        string filePath = Path.Combine("Assets", "CSV", fileName);
         string[] lines = File.ReadAllLines(filePath);
         numCartas = 0;
 
@@ -46,30 +45,32 @@ public class CardGenerator : MonoBehaviour
         {
             string[] values = line.Split(',');
 
-            Carta carta = new Carta();
-            carta.Tema = values[0];
-            carta.Nombre = values[1];
-            carta.Personaje = values[2];
-            carta.Pregunta = values[3];
-            carta.Condicion = values[4];
-            carta.Probabilidad = int.TryParse(values[5], out int probabilidad) ? probabilidad : 0;
-            carta.SobrescribirSi = values[6];
-            carta.SiDinero = int.TryParse(values[7], out int siDinero) ? siDinero : 0;
-            carta.SiGente = int.TryParse(values[8], out int siGente) ? siGente : 0;
-            carta.SiFlora = int.TryParse(values[9], out int siFlora) ? siFlora : 0;
-            carta.SiFauna = int.TryParse(values[10], out int siFauna) ? siFauna : 0;
-            carta.SiAire = int.TryParse(values[11], out int siAire) ? siAire : 0;
-            carta.ExtrasSi = values[12];
-            carta.SobrescribeNo = values[13]; 
-            carta.NoDinero = int.TryParse(values[14], out int noDinero) ? noDinero : 0;
-            carta.NoGente = int.TryParse(values[15], out int noGente) ? noGente : 0;
-            carta.NoFlora = int.TryParse(values[16], out int noFlora) ? noFlora : 0;
-            carta.NoFauna = int.TryParse(values[17], out int noFauna) ? noFauna : 0;
-            carta.NoAire = int.TryParse(values[18], out int noAire) ? noAire : 0;
-            carta.ExtrasNo = values[19];
-            carta.TextoExplicativo = values[20];
-            carta.CardId = numCartas;
-            carta.Usada = false;
+            Carta carta = new Carta
+            {
+                Tema = values[0],
+                Nombre = values[1],
+                Personaje = values[2],
+                Pregunta = values[3],
+                Condicion = values[4],
+                Probabilidad = int.TryParse(values[5], out int probabilidad) ? probabilidad : 0,
+                SobrescribirSi = values[6],
+                SiDinero = int.TryParse(values[7], out int siDinero) ? siDinero : 0,
+                SiGente = int.TryParse(values[8], out int siGente) ? siGente : 0,
+                SiFlora = int.TryParse(values[9], out int siFlora) ? siFlora : 0,
+                SiFauna = int.TryParse(values[10], out int siFauna) ? siFauna : 0,
+                SiAire = int.TryParse(values[11], out int siAire) ? siAire : 0,
+                ExtrasSi = values[12],
+                SobrescribeNo = values[13],
+                NoDinero = int.TryParse(values[14], out int noDinero) ? noDinero : 0,
+                NoGente = int.TryParse(values[15], out int noGente) ? noGente : 0,
+                NoFlora = int.TryParse(values[16], out int noFlora) ? noFlora : 0,
+                NoFauna = int.TryParse(values[17], out int noFauna) ? noFauna : 0,
+                NoAire = int.TryParse(values[18], out int noAire) ? noAire : 0,
+                ExtrasNo = values[19],
+                TextoExplicativo = values[20],
+                CardId = numCartas,
+                Usada = false
+            };
 
             numCartas++;
             cartas.Add(carta);
@@ -84,7 +85,7 @@ public class CardGenerator : MonoBehaviour
         GameManager gameManager = GameManager.Instance;
         int num = gameManager.cardsCount;
 
-        if (num < gameManager.cartasPorPartida.Count)
+        if (num < cardsNumberPerGame_)
         {
             GameObject newCard = Instantiate(cardPrefab_, transform, false);
             newCard.transform.SetAsFirstSibling();
@@ -204,7 +205,7 @@ public class CardGenerator : MonoBehaviour
 
         for (int i = 0; i < randomNumberList.Count; i++)
         {
-            fixedCardsSelection[randomNumberList[i]] = (Carta)cartas[intCardsSelection[i]];
+            fixedCardsSelection[randomNumberList[i]] = cartas[intCardsSelection[i]];
         }
 
         return fixedCardsSelection;
@@ -232,6 +233,6 @@ public class CardGenerator : MonoBehaviour
         )));
 
         cartas[indiceAleatorio].Usada = true;
-        return (Carta)cartas[indiceAleatorio].Clone();
+        return cartas[indiceAleatorio];
     }
 }
