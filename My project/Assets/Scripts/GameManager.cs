@@ -5,9 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public struct Answers
+{
+    public string question;
+    public string answer;
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance_;
+    [HideInInspector]
     public List<Carta> cartasPorPartida;
     [HideInInspector]
     public RectTransform[] resourcesBars = new RectTransform[5];
@@ -27,6 +34,7 @@ public class GameManager : MonoBehaviour
     int uniqueUpdate = 0;
     [HideInInspector]
     public int cardsCount = 0;
+    [HideInInspector]
     public bool win = false;
     [HideInInspector]
     public bool gameWon = false;
@@ -36,6 +44,7 @@ public class GameManager : MonoBehaviour
     public List<string> conditions;
     [HideInInspector]
     public float duration = 0;
+    public List<Answers> gameAnswers;
     public static GameManager Instance
     {
         get
@@ -80,7 +89,6 @@ public class GameManager : MonoBehaviour
             if (gameWon)
             {
                 win = true;
-                resetGame();
                 MySceneManager.Instance.LoadScene("EndScene");
             }
         }
@@ -92,7 +100,7 @@ public class GameManager : MonoBehaviour
         {
             if (resources[i] <= 0) {
                 win = false;
-                resetGame();
+                resetMusic();
                 MySceneManager.Instance.LoadScene("EndScene");
             }
         }
@@ -269,7 +277,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < gameManager.resources.Length; i++)
         {
             float targetScaleY = (float)gameManager.resources[i] / 100;
-            gameManager.resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
+            if(gameManager.resourcesBars[i] != null)
+                gameManager.resourcesBars[i].transform.localScale = new Vector3(1, targetScaleY, 1);
         }
     }
     public void resetGame()
@@ -279,6 +288,8 @@ public class GameManager : MonoBehaviour
         {
             resources[i] = 50;
         }
+        if(gameAnswers !=  null)
+            gameAnswers.Clear();
         cartasPorPartida.Clear();
         tokens.Clear();
         uniqueUpdate = 0;

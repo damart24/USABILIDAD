@@ -180,6 +180,7 @@ public class CardGenerator : MonoBehaviour
         }
 
         List<Carta> fixedCardsSelection = new List<Carta>(cardsNumberPerGame_);
+        GameManager.Instance.gameAnswers = new List<Answers>(cardsNumberPerGame_);
         for (int i = 0; i < cardsNumberPerGame_; i++)
         {
             fixedCardsSelection.Add(null);
@@ -203,7 +204,7 @@ public class CardGenerator : MonoBehaviour
 
         for (int i = 0; i < randomNumberList.Count; i++)
         {
-            fixedCardsSelection[randomNumberList[i]] = cartas[intCardsSelection[i]];
+            fixedCardsSelection[randomNumberList[i]] = (Carta)cartas[intCardsSelection[i]];
         }
 
         return fixedCardsSelection;
@@ -231,6 +232,6 @@ public class CardGenerator : MonoBehaviour
         )));
 
         cartas[indiceAleatorio].Usada = true;
-        return cartas[indiceAleatorio];
+        return (Carta)cartas[indiceAleatorio].Clone();
     }
 }

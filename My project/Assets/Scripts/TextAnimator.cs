@@ -8,7 +8,7 @@ public class TextAnimator : MonoBehaviour
     private TextMeshProUGUI textMeshPro;
     public string escenas = "GameScene";
     public string text;
-    string gameOver = "Has sido destetuido de tu cargo ,no has gestionado los recursos.Espabila para la proxima vez.";
+    string gameOver = "Has sido destituido de tu cargo, no has gestionado los recursos. Espabila para la proxima vez.";
     string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
     
 
@@ -33,6 +33,7 @@ public class TextAnimator : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenLetters);
         }
         yield return new WaitForSeconds(3f); // Puedes ajustar el tiempo de espera antes de cambiar de escena
-        MySceneManager.Instance.LoadScene(escenas);
+        if(MySceneManager.Instance.getActiveSceneName() != "EndScene")
+            MySceneManager.Instance.LoadScene(escenas);
     }
 }

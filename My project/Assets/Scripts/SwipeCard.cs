@@ -160,6 +160,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             EventVariableMixer eventVariable = EventVariableMixer.Instance;
             int dinero, gente, flora, fauna, aireYAgua;
             string extras = "ficha";
+            Answers answer;
+            answer.question = carta.Pregunta;
 
             if (transform.localPosition.x > iniPos_.x)
             {
@@ -175,6 +177,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 flora = carta.SiFlora;
                 fauna = carta.SiFauna;
                 aireYAgua = carta.SiAire;
+                answer.answer = carta.SobrescribirSi;
                 swipeLeft_ = false;
             }
             else
@@ -190,6 +193,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 flora = carta.NoFlora;
                 fauna = carta.NoFauna;
                 aireYAgua = carta.NoAire;
+                answer.answer = carta.SobrescribeNo;
                 swipeLeft_ = true;
             }
 
@@ -202,6 +206,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             }
 
             gameManager.hideAllIcons();
+
+            if(gameManager.cardsCount > 2)
+                gameManager.gameAnswers.Add(answer);
 
             if(dinero != 0)
             {
