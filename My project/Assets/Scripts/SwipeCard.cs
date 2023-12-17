@@ -52,8 +52,10 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         if (cardAvalaible)
         {
             transform.localPosition = new Vector2(transform.localPosition.x + eventData.delta.x, transform.localPosition.y);
+            Carta carta = GetComponent<Carta>();
+            int dinero, gente, flora, fauna, aireYAgua;
 
-            if(transform.localPosition != iniPos_ && cardWhiteAnimator.GetComponent<Animation>())
+            if (transform.localPosition != iniPos_ && cardWhiteAnimator.GetComponent<Animation>())
                 cardWhiteAnimator.SetActive(false);
             else if (cardWhiteAnimator.GetComponent<Animation>())
                 cardWhiteAnimator.SetActive(true);
@@ -62,11 +64,23 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             {
                 transform.localEulerAngles = new Vector3(0, 0,
                     Mathf.LerpAngle(0, -30, (iniPos_.x + transform.localPosition.x) / (Screen.width / 2)));
+                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
+                dinero = carta.SiDinero;
+                gente = carta.SiGente;
+                flora = carta.SiFlora;
+                fauna = carta.SiFauna;
+                aireYAgua = carta.SiAire;
             }
             else
             {
                 transform.localEulerAngles = new Vector3(0, 0,
                    Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
+                text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
+                dinero = carta.NoDinero;
+                gente = carta.NoGente;
+                flora = carta.NoFlora;
+                fauna = carta.NoFauna;
+                aireYAgua = carta.NoAire;
             }
 
             distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
@@ -86,8 +100,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             }
             else
             {
-                Carta carta = GetComponent<Carta>();
-                int dinero, gente, flora, fauna, aireYAgua;
+                
                 if (canvas.GetComponent<Image>().color.a <= 0.9f)
                 {
                     // Detener la Coroutine existente antes de iniciar la nueva.
@@ -95,28 +108,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                         StopCoroutine(fadeInCoroutine);
                 
                         fadeInCoroutine = StartCoroutine(FadeIn());
-
-                    if (transform.localPosition.x > iniPos_.x)
-                        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribirSi;
-                    else
-                        text.GetComponent<TMPro.TextMeshProUGUI>().text = GetComponent<Carta>().SobrescribeNo;
-                }
-
-                if (transform.localPosition.x - iniPos_.x > 0)
-                {
-                    dinero = carta.SiDinero;
-                    gente = carta.SiGente;
-                    flora = carta.SiFlora;
-                    fauna = carta.SiFauna;
-                    aireYAgua = carta.SiAire;
-                }
-                else
-                {
-                    dinero = carta.NoDinero;
-                    gente = carta.NoGente;
-                    flora = carta.NoFlora;
-                    fauna = carta.NoFauna;
-                    aireYAgua = carta.NoAire;
                 }
 
                 if (dinero != 0)
