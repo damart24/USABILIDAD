@@ -246,12 +246,6 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             eventVariableMixer.setMusicParameter("Flora", GameManager.Instance.resources[3]);
             eventVariableMixer.setMusicParameter("Aire", GameManager.Instance.resources[4]);
 
-            print(eventVariableMixer.getMusicParameter("Dinero"));
-            print(eventVariableMixer.getMusicParameter("Gente"));
-            print(eventVariableMixer.getMusicParameter("Fauna"));
-            print(eventVariableMixer.getMusicParameter("Flora"));
-            print(eventVariableMixer.getMusicParameter("Aire"));
-
             String textoExplicativo = GetComponent<Carta>().TextoExplicativo;
 
             textoExplicativo = textoExplicativo.Replace(";", "");
