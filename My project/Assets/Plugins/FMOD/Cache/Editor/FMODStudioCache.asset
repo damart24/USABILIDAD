@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8749718864231648427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Dinero
-  m_EditorClassIdentifier: 
-  Name: Dinero
-  StudioPath: parameter:/Dinero
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 3582948122
-    data2: 1661939322
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &-8350299429143157764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +21,7 @@ MonoBehaviour:
     data1: 271825141
     data2: 3835853556
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-7180289489755851182
@@ -69,31 +45,7 @@ MonoBehaviour:
     data1: 587878339
     data2: 4255319846
   Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-5814258236641133911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Gente
-  m_EditorClassIdentifier: 
-  Name: Gente
-  StudioPath: parameter:/Gente
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 271825141
-    data2: 3835853556
-  Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-5544732717766612731
@@ -128,30 +80,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 45176
---- !u!114 &-5401755977613145627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Aire
-  m_EditorClassIdentifier: 
-  Name: Aire
-  StudioPath: parameter:/Aire
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 587878339
-    data2: 4255319846
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &-4638624025363889535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +122,7 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638381595347831432
+  lastModified: 638384201031769196
   FileSizes:
   - Name: Desktop
     Value: 1312
@@ -214,10 +142,10 @@ MonoBehaviour:
   Path: ../Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638381595347821481
+  lastModified: 638384201031724401
   FileSizes:
   - Name: Desktop
-    Value: 5225728
+    Value: 5225408
   Exists: 1
 --- !u!114 &-3012782728217505540
 MonoBehaviour:
@@ -267,7 +195,7 @@ MonoBehaviour:
     data1: 454123815
     data2: 549095972
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-1509314029562658307
@@ -350,42 +278,13 @@ MonoBehaviour:
   - {fileID: 5066534148928992660}
   - {fileID: 8739097163830949881}
   - {fileID: -4638624025363889535}
-  EditorParameters:
-  - {fileID: -8749718864231648427}
-  - {fileID: 2157120531960510766}
-  - {fileID: -5814258236641133911}
-  - {fileID: -5401755977613145627}
-  - {fileID: 3834398698268265515}
+  EditorParameters: []
   MasterBanks:
   - {fileID: -3058615672499405417}
   StringsBanks:
   - {fileID: -3942587287412938678}
-  cacheTime: 638381595347831432
+  cacheTime: 638384201031769196
   cacheVersion: 131609
---- !u!114 &2157120531960510766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Flora
-  m_EditorClassIdentifier: 
-  Name: Flora
-  StudioPath: parameter:/Flora
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 454123815
-    data2: 549095972
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &2904753558877631121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,30 +312,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 451
---- !u!114 &3834398698268265515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fauna
-  m_EditorClassIdentifier: 
-  Name: Fauna
-  StudioPath: parameter:/Fauna
-  Min: 0
-  Max: 100
-  Default: 50
-  ID:
-    data1: 261094860
-    data2: 3283490563
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &5066534148928992660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +360,7 @@ MonoBehaviour:
     data1: 261094860
     data2: 3283490563
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &6299837795308713717
@@ -509,7 +384,7 @@ MonoBehaviour:
     data1: 3582948122
     data2: 1661939322
   Type: 0
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &7861006871688979290
