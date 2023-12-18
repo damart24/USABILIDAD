@@ -275,22 +275,28 @@ public class GameManager : MonoBehaviour
     public void resetGame()
     {
         CancelInvoke();
-        for (int i = 0; i < resources.Length; i++)
+        if (resources != null)
         {
-            resourcesBars[i].transform.localScale = new Vector3(1, (float)resources[i] / 100, 1);
+            for (int i = 0; i < resources.Length; i++)
+            {
+                resources[i] = 50;
+            }
         }
-        for (int i = 0; i < resources.Length; i++)
-        {
-            resources[i] = 50;
-        }
+
         if(gameAnswers !=  null)
             gameAnswers.Clear();
-        cartasPorPartida.Clear();
-        tokens.Clear();
-        cardsCount = 0;
-        win = false;
+        
+        if(cartasPorPartida != null)
+            cartasPorPartida.Clear();
+
+        if(tokens != null)
+            tokens.Clear();
+
         if(conditions != null)
             conditions.Clear();
+
+        cardsCount = 0;
+        win = false;
         gameWon = false;
         lastExplanationUsed = -1;
     }

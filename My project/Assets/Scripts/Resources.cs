@@ -16,6 +16,7 @@ public class Resources : MonoBehaviour
     private void Awake()
     {
         GameManager gameManager = GameManager.Instance;
+        gameManager.resetGame();
         for (int i = 0; i < resourcesBars.Length; i++)
         {
             gameManager.resourcesBars[i] = resourcesBars[i];
@@ -38,6 +39,5 @@ public class Resources : MonoBehaviour
         {
             gameManager.tokens.Add(tokensNames[i], tokens[i]);
         }
-        gameManager.resetGame();
     }
 }
