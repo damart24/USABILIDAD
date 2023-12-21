@@ -1,6 +1,6 @@
 ## ECO SWIPE (GRUPO 08)
 
-JAVIER CALLEJO HERNANDEZ</br>
+JAVIER CALLEJO HERRERO</br>
 DANIEL MARTÍN GÓMEZ</br>
 MIRIAM MARTÍN SÁNCHEZ</br>
 [ENLACE GDD](https://drive.google.com/file/d/1kN_tUdvu6bqdSmyy6O0SEvoqq3lZxRCe/view)</br>
