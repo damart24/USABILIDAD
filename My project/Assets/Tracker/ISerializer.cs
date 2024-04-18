@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+using Newtonsoft.Json;
 
 //Los comentarios está para que compile y no pete.
-
-public interface ISerializer
-
-    public string serialize(/*TrackerEvent event*/);
-}
-
-
-public class JsonSerializer : ISerializer
+namespace MyTracker
 {
-    public string serialize(/*TrackerEvent event*/)
+    public interface ISerializer
     {
-        /*return event.ToJson();*/
+        public string serialize(TrackerEvent trackerEvent);
+    }
+
+    public class JsonSerializer : ISerializer
+    {
+        public string serialize(TrackerEvent trackerEvent)
+        {
+            return JsonConvert.SerializeObject(trackerEvent);
+        }
     }
 }

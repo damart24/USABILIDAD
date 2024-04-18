@@ -3,40 +3,41 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tracker
+namespace MyTracker
 {
-    // Comentado para evitar errores de compilacion
-    //private List<ITrackerAsset> activeTrackers;
-    //private IPersistence persistenceObject;
-
-    private static Tracker instance;
-
-    public static Tracker Instance
+    public class Tracker
     {
-        get
+        private IPersistence persistenceObject;
+
+        private static Tracker instance;
+
+        public static Tracker Instance
         {
-            if (instance != null)
+            get
             {
-                return instance;
+                if (instance != null)
+                {
+                    return instance;
+                }
+                return null;
             }
-            return null;
         }
-    }
 
-    private Tracker() { }
+        private Tracker() { }
 
-    public static void Init() 
-    {
-        instance = new Tracker();
-    }
+        public static void Init()
+        {
+            instance = new Tracker();
+        }
 
-    public static void End()
-    {
-        
-    }
+        public static void End()
+        {
 
-    public void TrackEvent() 
-    {
+        }
 
+        public void TrackEvent()
+        {
+
+        }
     }
 }
