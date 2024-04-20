@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public float duration = 0;
     public List<Answers> gameAnswers;
+    public void gameStarts()
+    {
+        MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateGameStartEvent();
+        Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
+    }
     public static GameManager Instance
     {
         get
@@ -57,10 +62,18 @@ public class GameManager : MonoBehaviour
             return instance_;
         }
     }
+    private void OnApplicationQuit()
+    {
+        MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateSessionEndEvent();
+        Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
+    }
     private void Awake()
     {
         if (instance_ == null)
         {
+            MyTracker.Tracker.Init();
+            MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateSessionStartEvent();
+            Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
             instance_ = this;
         }
         else

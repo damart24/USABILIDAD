@@ -27,7 +27,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private Coroutine fadeOutCoroutine;
     [HideInInspector]
     public bool cardAvalaible = false;
-
+    bool swipedLeft, swipedRight, swipedCenter = false;
     //Guarda la posInicial
     void Start()
     {
@@ -71,7 +71,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 fauna = carta.SiFauna;
                 aireYAgua = carta.SiAire;
             }
-            else
+            else 
             {
                 transform.localEulerAngles = new Vector3(0, 0,
                    Mathf.LerpAngle(0, +30, (iniPos_.x - transform.localPosition.x) / (Screen.width / 2)));
@@ -85,6 +85,35 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
             distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
             GameManager gameManager = GameManager.Instance;
+
+
+            //Tracker
+            MyTracker.CardStateChangeEvent trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
+
+            if (!swipedRight && distancedMoved_ > distanceDragged * Screen.width && transform.localPosition.x - iniPos_.x > 0)
+            {
+                swipedRight = true;
+                swipedCenter = false;
+                trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.right;
+                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+            }
+            else if (!swipedLeft && distancedMoved_ > distanceDragged * Screen.width && transform.localPosition.x + iniPos_.x < 0)
+            {
+                swipedLeft = true;
+                swipedCenter = false;
+                trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.left;
+                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+            }
+            else if(!swipedCenter && distancedMoved_ < distanceDragged * Screen.width)
+            {
+                swipedLeft = false;
+                swipedRight = false;
+                swipedCenter = true;
+                trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.center;
+                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+            }
+
+
 
             if (distancedMoved_ < distanceDragged * Screen.width)
             {
@@ -138,6 +167,10 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         distancedMoved_ = Mathf.Abs(transform.localPosition.x - iniPos_.x);
         if (distancedMoved_ < distanceDragged * Screen.width)
         {
+            //Tracker
+            MyTracker.CardStateChangeEvent trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
+            Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+            trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.dropped;
             transform.localPosition = iniPos_;
             transform.eulerAngles = Vector3.zero;
             if (cardWhiteAnimator.GetComponent<Animation>())
@@ -145,6 +178,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
         else
         {
+            MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateRoundStartEvent();
+            Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
             cardMoved?.Invoke();
             Carta carta = GetComponent<Carta>();
             GameManager gameManager = GameManager.Instance;

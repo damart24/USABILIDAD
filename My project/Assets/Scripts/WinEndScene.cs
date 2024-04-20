@@ -13,17 +13,20 @@ public class WinEndScene : MonoBehaviour
 
     void Start()
     {
+        MyTracker.GameEndEvent trackerEvent = MyTracker.Tracker.Instance.CreateGameEndEvent();
         animator = GetComponent<TextAnimator>();
         if (GameManager.Instance.win)
         {
+            trackerEvent.Win = true;
             animator.text = winOver;
             Instantiate(winSound);
         }
         else
         {
+            trackerEvent.Win = true; 
             animator.text = gameOver;
             Instantiate(loseSound);
         }
-
+        Debug.Log(trackerEvent.EventType + " " + trackerEvent.Win + " " + trackerEvent.TimeStamp);
     }
 }
