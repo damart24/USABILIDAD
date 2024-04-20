@@ -13,7 +13,5 @@ public class Main : MonoBehaviour
     {
         MyTracker.CardStateChangeEvent gameStart = new MyTracker.CardStateChangeEvent();
         gameStart.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.dropped;
-
-        Debug.Log(gameStart.ToJson());
     }
 }

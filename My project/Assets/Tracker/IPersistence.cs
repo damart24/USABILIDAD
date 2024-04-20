@@ -6,7 +6,9 @@ namespace MyTracker
 {
     public abstract class IPersistence
     {
-        List<TrackerEvent> pendingEvents;
+        protected List<TrackerEvent> pendingEvents;
+
+        protected ISerializer serializer;
 
         //almacena eventos en los pendientes
         public abstract void Send(TrackerEvent trackerEvent);
@@ -23,7 +25,7 @@ namespace MyTracker
 
         public override void Send(TrackerEvent trackerEvent)
         {
-            throw new System.NotImplementedException();
+            pendingEvents.Add(trackerEvent);
         }
     }
 }

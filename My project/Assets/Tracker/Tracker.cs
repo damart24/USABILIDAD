@@ -32,12 +32,47 @@ namespace MyTracker
 
         public static void End()
         {
-
+            instance.end();
         }
 
-        public void TrackEvent()
+        private void end() 
         {
+            persistenceObject.Flush();
+        }
 
+        public void TrackEvent(TrackerEvent trackerEvent)
+        {
+            persistenceObject.Send(trackerEvent);
+        }
+
+        public GameStartEvent CreateGameStartEvent() 
+        {
+            return new GameStartEvent();
+        }
+
+        public GameEndEvent CreateGameEndEvent()
+        {
+            return new GameEndEvent();
+        }
+
+        public SessionStartEvent CreateSessionStartEvent()
+        {
+            return new SessionStartEvent();
+        }
+
+        public SessionEndEvent CreateSessionEndEvent()
+        {
+            return new SessionEndEvent();
+        }
+
+        public RoundStartEvent CreateRoundStartEvent() 
+        {
+            return new RoundStartEvent();
+        }
+
+        public CardStateChangeEvent CreateCardStateChangeEvent() 
+        {
+            return new CardStateChangeEvent();
         }
     }
 }
