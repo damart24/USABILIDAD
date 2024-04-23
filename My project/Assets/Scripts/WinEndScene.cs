@@ -23,7 +23,7 @@ public class WinEndScene : MonoBehaviour
         }
         else
         {
-            trackerEvent.Win = true; 
+            trackerEvent.Win = false; 
             animator.text = gameOver;
             Instantiate(loseSound);
         }
