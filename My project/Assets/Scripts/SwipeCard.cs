@@ -87,23 +87,24 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             GameManager gameManager = GameManager.Instance;
 
 
-            //Tracker
-            MyTracker.CardStateChangeEvent trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
+            MyTracker.CardStateChangeEvent trackerEvent = null;
 
             if (!swipedRight && distancedMoved_ > distanceDragged * Screen.width && transform.localPosition.x - iniPos_.x > 0)
             {
                 swipedRight = true;
                 swipedCenter = false;
+                //Tracker
+                trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.right;
-                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
                 MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
             else if (!swipedLeft && distancedMoved_ > distanceDragged * Screen.width && transform.localPosition.x + iniPos_.x < 0)
             {
                 swipedLeft = true;
                 swipedCenter = false;
+                //Tracker
+                trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.left;
-                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
                 MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
             else if(!swipedCenter && distancedMoved_ < distanceDragged * Screen.width)
@@ -111,10 +112,14 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 swipedLeft = false;
                 swipedRight = false;
                 swipedCenter = true;
+                //Tracker
+                trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.center;
-                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
                 MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
+
+            if(trackerEvent != null)
+                Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
 
 
 

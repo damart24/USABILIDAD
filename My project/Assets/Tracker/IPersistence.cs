@@ -25,9 +25,9 @@ namespace MyTracker
         {
             serializer = new JsonSerializer();
 
-            filePath = Path.Combine(Application.persistentDataPath, fileName);
-
             fileName = "ArchivoGuardado";
+
+            filePath = Path.Combine(Application.persistentDataPath, fileName);
 
             if (!File.Exists(filePath))
             {
