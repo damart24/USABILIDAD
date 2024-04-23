@@ -28,6 +28,7 @@ namespace MyTracker
         public static void Init()
         {
             instance = new Tracker();
+            instance.persistenceObject = new FilePersistence();
         }
 
         public static void End()

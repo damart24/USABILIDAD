@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void gameStarts()
     {
         MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateGameStartEvent();
+        MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
         Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
     }
     public static GameManager Instance
@@ -65,7 +66,9 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateSessionEndEvent();
+        MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
         Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
+        MyTracker.Tracker.End();
     }
     private void Awake()
     {
@@ -73,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             MyTracker.Tracker.Init();
             MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateSessionStartEvent();
+            MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
             instance_ = this;
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace MyTracker
@@ -18,9 +19,33 @@ namespace MyTracker
 
     public class FilePersistence : IPersistence
     {
+        private string filePath;
+        private string fileName;
+        public FilePersistence()
+        {
+            serializer = new JsonSerializer();
+
+            filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+            fileName = "ArchivoGuardado";
+
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+
+            pendingEvents = new List<TrackerEvent>();
+        }
         public override void Flush()
         {
-            throw new System.NotImplementedException();
+            List<string> jsonEvents = new List<string>();
+
+            foreach (TrackerEvent trackerEvent in pendingEvents)
+            {
+                jsonEvents.Add(serializer.serialize(trackerEvent));
+            }
+
+            File.WriteAllLines(filePath, jsonEvents.ToArray());      
         }
 
         public override void Send(TrackerEvent trackerEvent)

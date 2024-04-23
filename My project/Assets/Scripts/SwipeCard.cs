@@ -96,6 +96,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 swipedCenter = false;
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.right;
                 Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+                MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
             else if (!swipedLeft && distancedMoved_ > distanceDragged * Screen.width && transform.localPosition.x + iniPos_.x < 0)
             {
@@ -103,6 +104,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 swipedCenter = false;
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.left;
                 Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+                MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
             else if(!swipedCenter && distancedMoved_ < distanceDragged * Screen.width)
             {
@@ -111,6 +113,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 swipedCenter = true;
                 trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.center;
                 Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+                MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             }
 
 
@@ -169,8 +172,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         {
             //Tracker
             MyTracker.CardStateChangeEvent trackerEvent = MyTracker.Tracker.Instance.CreateCardStateChangeEvent();
-            Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
             trackerEvent.CardState = MyTracker.CardStateChangeEvent.CardStateEnum.dropped;
+            Debug.Log(trackerEvent.EventType + " " + trackerEvent.CardState + " " + trackerEvent.TimeStamp);
+            MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             transform.localPosition = iniPos_;
             transform.eulerAngles = Vector3.zero;
             if (cardWhiteAnimator.GetComponent<Animation>())
@@ -180,6 +184,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         {
             MyTracker.TrackerEvent trackerEvent = MyTracker.Tracker.Instance.CreateRoundStartEvent();
             Debug.Log(trackerEvent.EventType + " " + trackerEvent.TimeStamp);
+            MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
             cardMoved?.Invoke();
             Carta carta = GetComponent<Carta>();
             GameManager gameManager = GameManager.Instance;

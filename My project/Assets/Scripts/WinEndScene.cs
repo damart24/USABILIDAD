@@ -27,6 +27,7 @@ public class WinEndScene : MonoBehaviour
             animator.text = gameOver;
             Instantiate(loseSound);
         }
+        MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
         Debug.Log(trackerEvent.EventType + " " + trackerEvent.Win + " " + trackerEvent.TimeStamp);
     }
 }
