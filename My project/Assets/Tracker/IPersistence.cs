@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -21,18 +22,16 @@ namespace MyTracker
     {
         private string filePath;
         private string fileName;
-        public FilePersistence()
+        public FilePersistence(ISerializer iserializer)
         {
-            serializer = new JsonSerializer();
+            serializer = iserializer;
+            
+            DateTimeOffset dto = new DateTimeOffset(DateTime.UtcNow);
 
-            fileName = "ArchivoGuardado";
+            fileName = dto.ToUnixTimeMilliseconds().ToString();
 
             filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-            if (!File.Exists(filePath))
-            {
-                File.Create(filePath).Close();
-            }
+            File.Create(filePath).Close();
 
             pendingEvents = new List<TrackerEvent>();
         }

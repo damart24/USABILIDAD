@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,7 +29,7 @@ namespace MyTracker
         public static void Init()
         {
             instance = new Tracker();
-            instance.persistenceObject = new FilePersistence();
+            instance.persistenceObject = new FilePersistence(new JsonSerializer());
         }
 
         public static void End()
