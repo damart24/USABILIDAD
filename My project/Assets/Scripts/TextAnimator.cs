@@ -26,7 +26,7 @@ public class TextAnimator : MonoBehaviour
 
     IEnumerator AnimateText(string text)
     {
-        textMeshPro.text = "";
+        textMeshPro.text = "<rotate=90>";
         foreach (char c in text)
         {
             textMeshPro.text += c;
