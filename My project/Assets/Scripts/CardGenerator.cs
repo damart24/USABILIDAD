@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CardGenerator : MonoBehaviour
 {
-    string fileName = "niveles-cartas-japones.csv";
+    string fileName;
     //string filePath = "niveles-cartas.csv";
     //Prefab de la carta que se va a generar
     [SerializeField]
@@ -15,6 +15,8 @@ public class CardGenerator : MonoBehaviour
     //Lista de sprites aleatorios que se van a cambiar
     [SerializeField]
     private Sprite[] sprites_;
+    [SerializeField]
+    private Sprite[] spritesJapanese_;
 
     private int numCartas = 0;
     private int cardsNumberPerGame_ = 22;
@@ -24,17 +26,39 @@ public class CardGenerator : MonoBehaviour
 
     private void Start()
     {
+        switch (L10nManager.Instance.GetLanguage())
+        {
+            case Language.Spanish:
+                fileName = "niveles-cartas.csv";
+                spritesChosen.Add("Faustino el agricultor", sprites_[0]);
+                spritesChosen.Add("Toni el activista", sprites_[1]);
+                spritesChosen.Add("Paqui Jefa de Medio Ambiente", sprites_[2]);
+                spritesChosen.Add("Baltasar el empresario", sprites_[3]);
+                spritesChosen.Add("Eli agente forestal", sprites_[4]);
+                spritesChosen.Add("Rodrigo el Biologo", sprites_[5]);
+                spritesChosen.Add("Laura la arquitecto", sprites_[6]);
+                spritesChosen.Add("Faustino el ganadero", sprites_[7]);
+                spritesChosen.Add("Faustino el cazador", sprites_[8]);
+                break;
+            case Language.Japanese:
+                fileName = "niveles-cartas-japones.csv";
+                spritesChosen.Add("Faustino el agricultor", spritesJapanese_[0]);
+                spritesChosen.Add("Toni el activista", spritesJapanese_[1]);
+                spritesChosen.Add("Paqui Jefa de Medio Ambiente", spritesJapanese_[2]);
+                spritesChosen.Add("Baltasar el empresario", spritesJapanese_[3]);
+                spritesChosen.Add("Eli agente forestal", spritesJapanese_[4]);
+                spritesChosen.Add("Rodrigo el Biologo", spritesJapanese_[5]);
+                spritesChosen.Add("Laura la arquitecto", spritesJapanese_[6]);
+                spritesChosen.Add("Faustino el ganadero", spritesJapanese_[7]);
+                spritesChosen.Add("Faustino el cazador", spritesJapanese_[8]);
+                break;
+            default:
+                fileName = "niveles-cartas.csv";
+                break;
+        }
         cardsNumberPerGame_ = 22;
         // Asociar nombres de sprite con rutas
-        spritesChosen.Add("Faustino el agricultor", sprites_[0]);
-        spritesChosen.Add("Toni el activista", sprites_[1]);
-        spritesChosen.Add("Paqui Jefa de Medio Ambiente", sprites_[2]);
-        spritesChosen.Add("Baltasar el empresario", sprites_[3]);
-        spritesChosen.Add("Eli agente forestal", sprites_[4]);
-        spritesChosen.Add("Rodrigo el Biologo", sprites_[5]);
-        spritesChosen.Add("Laura la arquitecto", sprites_[6]);
-        spritesChosen.Add("Faustino el ganadero", sprites_[7]);
-        spritesChosen.Add("Faustino el cazador", sprites_[8]);
+        
 
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
@@ -78,7 +102,7 @@ public class CardGenerator : MonoBehaviour
         cartasFijas = cartas.FindAll(carta => carta.Condicion == "Evento fijo");
         GameManager.Instance.cartasPorPartida = GenerateFixedCardsSelection();
     }
-    //Instancia la nueva carta que estar· detr·s del mazo
+    //Instancia la nueva carta que estar√° detr√°s del mazo
     //Le pone como primer hijo y cambia su sprite por un sprite aleatorio
     public void InstantiateCard()
     {
@@ -131,25 +155,36 @@ public class CardGenerator : MonoBehaviour
             playerCard.TextoExplicativo = gameManager.cartasPorPartida[num].TextoExplicativo;
 
             if (playerCard.SobrescribeNo == "")
-                playerCard.SobrescribeNo = "No";
+            {
+                if(L10nManager.Instance.GetLanguage() == Language.Spanish)
+                    playerCard.SobrescribeNo = "No";
+                else if (L10nManager.Instance.GetLanguage() == Language.Japanese)
+                    playerCard.SobrescribeNo = "„ÅÑ„ÅÑ„Åà";
+            }
 
             if (playerCard.SobrescribirSi == "")
-                playerCard.SobrescribirSi = "Si";
+            {
+                if (L10nManager.Instance.GetLanguage() == Language.Spanish)
+                    playerCard.SobrescribirSi = "Si";
+                else if (L10nManager.Instance.GetLanguage() == Language.Japanese)
+                    playerCard.SobrescribirSi = "„ÅØ„ÅÑ";
+            }
+
 
             string personaje = gameManager.cartasPorPartida[num].Personaje;
 
-            // Verificar si el personaje est· en el diccionario
+            // Verificar si el personaje est√° en el diccionario
             if (spritesChosen.TryGetValue(personaje, out Sprite sprite))
             {
-                // Si el personaje est· en el diccionario, asignar el sprite a la imagen
+                // Si el personaje est√° en el diccionario, asignar el sprite a la imagen
                 newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprite;
             }
             else
             {
                 //Asigna el sprite a baltasar
                 newCard.transform.GetChild(1).GetComponent<Image>().sprite = sprites_[0];
-                // Manejar el caso en el que el personaje no est· en el diccionario
-                Debug.LogWarning($"No se encontrÛ el sprite para el personaje: {personaje}");
+                // Manejar el caso en el que el personaje no est√° en el diccionario
+                Debug.LogWarning($"No se encontr√≥ el sprite para el personaje: {personaje}");
             }
 
             gameManager.cardsCount++;
@@ -187,10 +222,10 @@ public class CardGenerator : MonoBehaviour
             fixedCardsSelection.Add(null);
         }
 
-        // Lista de n˙meros del 0 al 20
+        // Lista de n√∫meros del 0 al 20
         List<int> numberList = new List<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19});
 
-        // Usar la clase Random para seleccionar cinco n˙meros aleatorios
+        // Usar la clase Random para seleccionar cinco n√∫meros aleatorios
         List<int> randomNumberList = new List<int>();
 
         for (int i = 0; i < 7; i++)
@@ -199,7 +234,7 @@ public class CardGenerator : MonoBehaviour
             int numeroAleatorio = numberList[indiceAleatorio];
             randomNumberList.Add(numeroAleatorio);
 
-            // Remover el n˙mero seleccionado para evitar repeticiones
+            // Remover el n√∫mero seleccionado para evitar repeticiones
             numberList.RemoveAt(indiceAleatorio);
         }
 

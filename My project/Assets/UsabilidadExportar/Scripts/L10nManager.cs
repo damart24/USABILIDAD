@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Language { Spanish, Japanese }
 public class L10nManager : MonoBehaviour
 {
-    public enum Language { Spanish, Japanese }
     [SerializeField]
     private Language languageUsed;
     private static L10nManager instance_;

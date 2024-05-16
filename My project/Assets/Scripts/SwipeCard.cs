@@ -35,7 +35,7 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         anotherImage = transform.GetChild(1).gameObject;
         canvas = transform.GetChild(2).gameObject;
         text = transform.GetChild(3).gameObject;
-       
+
         iniPos_ = transform.position;
 
         canvas.SetActive(true);
