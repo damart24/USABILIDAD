@@ -409,7 +409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBetweenLetters: 0.05
   escenas: GameScene
-  text: "JaviPerroEspa\xF1ol"
+  text: Eres el nuevo alcalde de Villa Catia, debes atender a tus ciudadanos, aceptando
+    o denegando sus propuestas. Tu objetivo es que tu pueblo te vote en las proximas
+    elecciones y evitar ser apartado del cargo.
 --- !u!114 &552051241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +878,7 @@ GameObject:
   - component: {fileID: 1978938927}
   - component: {fileID: 1978938926}
   - component: {fileID: 1978938928}
+  - component: {fileID: 1978938929}
   m_Layer: 5
   m_Name: Text2
   m_TagString: Untagged
@@ -1014,6 +1017,23 @@ MonoBehaviour:
   delayBetweenLetters: 0.05
   escenas: GameScene
   text: " \u3053\u3093\u306B\u3061\u306F\u3001\u30ED\u30C9\u30EA\u30B4\u3001\u304A\u5143\u6C17\u3067\u3059\u304B\uFF1F"
+--- !u!114 &1978938929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978938924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5937bb5ed769b4dbf1ca0e96374865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  japaneseAugmentValue: 0
+  characterSpacingValue: 0
+  japaneseSize: 0
+  japaneseFont: {fileID: 0}
 --- !u!1001 &2124898937
 PrefabInstance:
   m_ObjectHideFlags: 0
