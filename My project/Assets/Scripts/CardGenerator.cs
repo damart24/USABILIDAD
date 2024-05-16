@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CardGenerator : MonoBehaviour
 {
-    string fileName = "niveles-cartas.csv";
+    string fileName = "niveles-cartas-japones.csv";
     //string filePath = "niveles-cartas.csv";
     //Prefab de la carta que se va a generar
     [SerializeField]
