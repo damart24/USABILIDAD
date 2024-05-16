@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5290345469519931863}
   - component: {fileID: 6018014872515146450}
-  - component: {fileID: 6384921893429366263}
+  - component: {fileID: 178725362814328846}
+  - component: {fileID: 8782927330142921290}
   m_Layer: 5
   m_Name: Texto
   m_TagString: Untagged
@@ -45,7 +46,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238726384286299760}
   m_CullTransparentMesh: 1
---- !u!114 &6384921893429366263
+--- !u!114 &178725362814328846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,7 +55,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 238726384286299760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c5937bb5ed769b4dbf1ca0e96374865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  japaneseAugmentValue: 1.2
+  characterSpacingValue: 20
+  japaneseSize: 36
+  japaneseFont: {fileID: 11400000, guid: 485926a3a0f8f154a8d88a9dc497e850, type: 2}
+--- !u!114 &8782927330142921290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238726384286299760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6279490159996ac488a501c53579795e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -65,7 +83,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -92,8 +110,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 0
+  m_fontSizeBase: 0
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
