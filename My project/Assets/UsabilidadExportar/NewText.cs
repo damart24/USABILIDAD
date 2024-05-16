@@ -18,5 +18,9 @@ public class NewText : TextMeshProUGUI
         rectTransform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, valueToRotate);
         characterSpacing = characterSpacingValue;
         characterSpacing *= japaneseAugmentValue;
+
+        //float widthSaved = rectTransform.rect.width;
+        //float heightSaved = rectTransform.rect.height;
+        //rectTransform.sizeDelta = new Vector2(heightSaved, widthSaved);
     }
 }
