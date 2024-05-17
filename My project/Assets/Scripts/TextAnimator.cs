@@ -7,19 +7,12 @@ public class TextAnimator : MonoBehaviour
     public float delayBetweenLetters = 0.05f;  // Tiempo de espera entre letras
     private TextMeshProUGUI textMeshPro;
     public string escenas = "GameScene";
-    public string text;
-    string gameOver = "Has sido destituido de tu cargo, no has gestionado los recursos. Espabila para la proxima vez.";
-    string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
-    
+    [SerializeField]
+    private string text;
+    public string Text { get => text; set => text = value; }
 
     void Start()
     {
-        if (MySceneManager.Instance.getActiveSceneName() == "EndScene")
-        {
-            if (GameManager.Instance.win) text = winOver;
-            else text = gameOver;
-        }
-        
         textMeshPro = GetComponent<TextMeshProUGUI>();
         StartCoroutine(AnimateText(text));
     }

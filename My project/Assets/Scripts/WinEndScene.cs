@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TextAnimator))]
 public class WinEndScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    string gameOver = "Has sido destituido de tu cargo, no has gestionado los recursos. Espabila para la proxima vez.";
-    string winOver = "Has cumplido exitosamente con tus responsabilidades. ¡Bien hecho!";
+    // Start is called before the first frame updatSeri
+    [SerializeField]
+    string gameOver;
+    [SerializeField]
+    string winOver;
     TextAnimator animator;
 
     [SerializeField] GameObject winSound, loseSound;
 
-    void Start()
+    void Awake()
     {
         MyTracker.GameEndEvent trackerEvent = MyTracker.Tracker.Instance.CreateGameEndEvent();
         animator = GetComponent<TextAnimator>();
         if (GameManager.Instance.win)
         {
             trackerEvent.Win = true;
-            animator.text = winOver;
+            animator.Text = winOver;
             Instantiate(winSound);
         }
         else
         {
             trackerEvent.Win = false; 
-            animator.text = gameOver;
+            animator.Text = gameOver;
             Instantiate(loseSound);
         }
         MyTracker.Tracker.Instance.TrackEvent(trackerEvent);
