@@ -28,6 +28,8 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     [HideInInspector]
     public bool cardAvalaible = false;
     bool swipedLeft, swipedRight, swipedCenter = false;
+    TextMeshProUGUI textMeshProUGUI;
+    string textSaved;
     //Guarda la posInicial
     void Start()
     {
@@ -35,6 +37,24 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         anotherImage = transform.GetChild(1).gameObject;
         canvas = transform.GetChild(2).gameObject;
         text = transform.GetChild(3).gameObject;
+        GameObject gameTextSaved = new GameObject();
+        if (transform.childCount > 4)
+            gameTextSaved = transform.GetChild(4).gameObject;
+        else gameTextSaved = null;
+
+        if (gameTextSaved != null)
+        {
+            TextMeshProUGUI[] textComponents = gameTextSaved.GetComponentsInChildren<TextMeshProUGUI>();
+
+            foreach (TextMeshProUGUI textComponent in textComponents)
+            {
+                if (textComponent.gameObject.activeSelf){
+                    textMeshProUGUI = textComponent; 
+                    break; 
+                }
+            }
+        }
+        
 
         iniPos_ = transform.position;
 
@@ -332,6 +352,9 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     //Cambia el sprite por el frontal desde un evento en el animator
     public void changeSprite()
     {
+        if(textMeshProUGUI)
+            textMeshProUGUI.enabled = true;
+
         anotherImage.GetComponent<Image>().sprite = frontSprite;
     }
     //Desactiva el animator desde un evento en el animator
