@@ -10,6 +10,7 @@ public class TextAnimator : MonoBehaviour
     [SerializeField]
     private string text;
     public string Text { get => text; set => text = value; }
+    private string shownString;
 
     void Start()
     {
@@ -19,9 +20,11 @@ public class TextAnimator : MonoBehaviour
 
     IEnumerator AnimateText(string text)
     {
+        shownString = "";
         foreach (char c in text)
         {
-            textMeshPro.text += c;
+            shownString += c;
+            textMeshPro.text = shownString;
             yield return new WaitForSeconds(delayBetweenLetters);
         }
         yield return new WaitForSeconds(3f); // Puedes ajustar el tiempo de espera antes de cambiar de escena

@@ -566,6 +566,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6643191489271064962, guid: 3b7fb70ec1b5f5a4e891c9a5bb30b76d, type: 3}
+      propertyPath: showKanjiDescriptions
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7954439669714345270, guid: 3b7fb70ec1b5f5a4e891c9a5bb30b76d, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901

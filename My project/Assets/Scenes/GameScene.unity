@@ -1309,7 +1309,8 @@ GameObject:
   m_Component:
   - component: {fileID: 580952836}
   - component: {fileID: 580952838}
-  - component: {fileID: 580952837}
+  - component: {fileID: 580952840}
+  - component: {fileID: 580952839}
   m_Layer: 5
   m_Name: PreguntaTexto
   m_TagString: Untagged
@@ -1334,9 +1335,17 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 52.272736, y: -6.8180847}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1361.7, y: 365.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &580952837
+--- !u!222 &580952838
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580952835}
+  m_CullTransparentMesh: 1
+--- !u!114 &580952839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1345,7 +1354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 580952835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6279490159996ac488a501c53579795e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1383,8 +1392,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 128.4
-  m_fontSizeBase: 128.4
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 70
@@ -1393,8 +1402,8 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 5
+  m_characterSpacing: 24
+  m_wordSpacing: 0
   m_lineSpacing: -25
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -1419,20 +1428,29 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -623.46985, y: 104.617195, z: -572.86084, w: 112.081215}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &580952838
-CanvasRenderer:
+--- !u!114 &580952840
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580952835}
-  m_CullTransparentMesh: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5937bb5ed769b4dbf1ca0e96374865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  japaneseAugmentValue: 1.2
+  characterSpacingValue: 20
+  japaneseSize: 80
+  japaneseFont: {fileID: 11400000, guid: 485926a3a0f8f154a8d88a9dc497e850, type: 2}
 --- !u!1 &603358557
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,7 +5310,7 @@ MonoBehaviour:
   circleSprite:
   - {fileID: 21300000, guid: df20da351b2fd83449bb39b8dd518f7d, type: 3}
   - {fileID: 21300000, guid: 5b497f107bc30824eb79d58e6266e096, type: 3}
-  questionText: {fileID: 580952837}
+  questionText: {fileID: 580952839}
   explanationGameObjects:
   - {fileID: 8558022799566512500, guid: 632c16f503089b745b8529357a3d4545, type: 3}
   - {fileID: 3717870586746169189, guid: 1018185c1aee12c41965bbafd9473e9f, type: 3}
