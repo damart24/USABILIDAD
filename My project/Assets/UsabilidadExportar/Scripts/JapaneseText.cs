@@ -14,15 +14,15 @@ public class JapaneseText : TextMeshProUGUI
 
     bool changedTextProcessed = false;
 
-    private Dictionary<KeyValuePair<int, int>, string> kanjiAndExplanations;
+    private Dictionary<KeyValuePair<int, int>, string> kanjiAndReadings;
 
-    private Dictionary<KeyValuePair<int, int>, JapaneseText> explanationObjects;
+    private Dictionary<KeyValuePair<int, int>, JapaneseText> readingsObjects;
 
     protected override void Awake()
     {
         base.Awake();
-        kanjiAndExplanations = new();
-        explanationObjects = new();
+        kanjiAndReadings = new();
+        readingsObjects = new();
         //Registramos un callback cada vez que el texto cambie
         RegisterDirtyLayoutCallback(OnTextChanged);
     }
@@ -40,17 +40,17 @@ public class JapaneseText : TextMeshProUGUI
         changedTextProcessed = true;
 
         //Reseteamos las explicaciones
-        kanjiAndExplanations.Clear();
-        foreach (var explanation in explanationObjects)
+        kanjiAndReadings.Clear();
+        foreach (var explanation in readingsObjects)
         {
             Destroy(explanation.Value.gameObject);
         }
-        explanationObjects.Clear();
+        readingsObjects.Clear();
 
         JapaneseTextAttributes atributes = GetComponent<JapaneseTextAttributes>();
         fontSize = atributes.japaneseSize;
         font = atributes.japaneseFont;
-        if (L10nManager.Instance.GetLanguage() == Language.Japanese)
+        if (L10nManager.Instance && L10nManager.Instance.GetLanguage() == Language.Japanese)
         {
 
             if (atributes.vertical)
@@ -65,7 +65,15 @@ public class JapaneseText : TextMeshProUGUI
             if (TextHasKanji(m_text))
             {
                 //Se limpia el texto y reiniciamos los textos con las explicaciones
-                CleanTextAndInitializeExplanations();
+                CleanTextAndInitializeReadings();
+                lineSpacing = atributes.lineSpacingValue;
+
+                //Actualizamos la posición de todos los textos con las explicaciones para que estén encima de su(s) kanji
+                if (kanjiAndReadings != null)
+                {
+                    foreach (var kan in readingsObjects)
+                        UpdateReadingsText(kan.Key);
+                }
             }
         }
         else
@@ -75,13 +83,6 @@ public class JapaneseText : TextMeshProUGUI
             characterSpacing = atributes.characterSpacingValue;
             characterSpacing /= atributes.japaneseAugmentValue;
             fontSize /= atributes.japaneseAugmentValue;
-        }
-
-        //Actualizamos la posición de todos los textos con las explicaciones para que estén encima de su(s) kanji
-        if (kanjiAndExplanations != null)
-        {
-            foreach (var kan in explanationObjects)
-                UpdateExplanationText(kan.Key);
         }
 
         changedTextProcessed = false;
@@ -100,7 +101,7 @@ public class JapaneseText : TextMeshProUGUI
         return colonsCount > 0 && openSquareBracketCount > 0 && closeSquareBracketCount > 0;
     }
 
-    private void CleanTextAndInitializeExplanations()
+    private void CleanTextAndInitializeReadings()
     {
         string cleanText = m_text;
         //Mientras el texto tenga cosas de nuestros kanji...
@@ -109,6 +110,13 @@ public class JapaneseText : TextMeshProUGUI
             int indexOfColon = cleanText.IndexOf(':');
             int indexOfopenSquareBracket = cleanText.IndexOf('[');
             int indexOfcloseSquareBracket = cleanText.IndexOf(']');
+
+            //Si hay un ':' fuera de los brackets, lo quitamos y continuamos, se que no es lo mejor pero prefiero que no pete :vv
+            if (indexOfopenSquareBracket > indexOfColon || indexOfcloseSquareBracket < indexOfColon)
+            {
+                cleanText.Remove(indexOfColon, 1);
+                continue;
+            }
 
             string kanji = cleanText.Substring(indexOfopenSquareBracket + 1, indexOfColon - indexOfopenSquareBracket - 1);
             string expla = cleanText.Substring(indexOfColon + 1, indexOfcloseSquareBracket - indexOfColon - 1);
@@ -119,20 +127,22 @@ public class JapaneseText : TextMeshProUGUI
             //Esto son los indices de el primer caracter kanji y el ultimo que tienen la explicación
             KeyValuePair<int, int> kanjiIndexes = new KeyValuePair<int, int>(indexOfopenSquareBracket, indexOfColon - 2);
 
-            if (!kanjiAndExplanations.ContainsKey(kanjiIndexes))
+            if (!kanjiAndReadings.ContainsKey(kanjiIndexes))
             {
-                kanjiAndExplanations.Add(kanjiIndexes, expla);
+                AddReadingText(kanjiIndexes, expla);
 
-                AddExplanationText(kanjiIndexes, expla);
+                Debug.Log (kanji + "|" +  expla);
             }
 
         }
         text = cleanText;
     }
 
-    private void AddExplanationText(KeyValuePair<int, int> indexes, string text)
+    private void AddReadingText(KeyValuePair<int, int> indexes, string text)
     {
-        GameObject txtObject = new GameObject("expl_txt_" + explanationObjects.Count, typeof(RectTransform));
+        kanjiAndReadings.Add(indexes, text);
+
+        GameObject txtObject = new GameObject("expl_txt_" + readingsObjects.Count, typeof(RectTransform));
         JapaneseTextAttributes atributes = GetComponent<JapaneseTextAttributes>();
         txtObject.transform.SetParent(transform);
 
@@ -147,32 +157,35 @@ public class JapaneseText : TextMeshProUGUI
         txtComp.horizontalAlignment = HorizontalAlignmentOptions.Center;
         txtComp.SetText(text);
 
-        explanationObjects.Add(indexes, txtComp);
-
-        RectTransform exRectTransform = explanationObjects[indexes].GetComponent<RectTransform>();
-        exRectTransform.anchorMin = Vector2.one * 0.5f;
-        exRectTransform.anchorMax = Vector2.one * 0.5f;
+        readingsObjects.Add(indexes, txtComp);
     }
 
-    private void UpdateExplanationText(KeyValuePair<int, int> kanji)
+    private void UpdateReadingsText(KeyValuePair<int, int> kanji)
     {
-        RectTransform exRectTransform;
-        exRectTransform = explanationObjects[kanji].GetComponent<RectTransform>();
+        ForceMeshUpdate();
 
-        Vector3 topLeftBorder = GetTextInfo(m_text).characterInfo[kanji.Key].topLeft;
-        Vector3 bottomRightBorder = GetTextInfo(m_text).characterInfo[kanji.Value].bottomRight;
-        Vector3 topRightBorder = GetTextInfo(m_text).characterInfo[kanji.Value].topRight;
+        TMP_TextInfo txtInfo = GetTextInfo(m_text);
+
+        Vector3 topLeftBorder = txtInfo.characterInfo[kanji.Key].topLeft;
+        Vector3 bottomRightBorder = txtInfo.characterInfo[kanji.Value].bottomRight;
+        Vector3 topRightBorder = txtInfo.characterInfo[kanji.Value].topRight;
+
+        RectTransform exRectTransform = readingsObjects[kanji].GetComponent<RectTransform>();
+
 
         float height = topLeftBorder.y - bottomRightBorder.y;
-
+        exRectTransform.anchorMin = Vector2.one * 0.5f;
+        exRectTransform.anchorMax = Vector2.one * 0.5f;
         exRectTransform.anchoredPosition = new Vector2((topLeftBorder.x + topRightBorder.x) * 0.5f, Mathf.Max(topLeftBorder.y, topRightBorder.y));
+
+        exRectTransform.localScale = Vector3.one;
 
         var explanationAttr = exRectTransform.GetComponent<JapaneseTextAttributes>();
 
         explanationAttr.japaneseSize = fontSize * 0.33f;
 
-        exRectTransform.sizeDelta = new Vector2((topRightBorder.x - topLeftBorder.x) * 2f, height + explanationAttr.japaneseSize * 0.25f);
+        exRectTransform.sizeDelta = new Vector2((topRightBorder.x - topLeftBorder.x), height);
 
-        exRectTransform.localScale = Vector3.one;
+        exRectTransform.GetComponent<JapaneseText>().ForceMeshUpdate();
     }
 }

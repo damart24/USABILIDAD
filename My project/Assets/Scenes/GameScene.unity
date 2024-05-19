@@ -1325,7 +1325,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580952835}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.2727273, y: 2.2727273, z: 2.2727273}
   m_ConstrainProportionsScale: 0
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 24
+  m_characterSpacing: 16.666666
   m_wordSpacing: 0
   m_lineSpacing: -25
   m_lineSpacingMax: 0
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   vertical: 0
   japaneseAugmentValue: 1.2
   characterSpacingValue: 20
+  lineSpacingValue: 10
   japaneseSize: 80
   japaneseFont: {fileID: 11400000, guid: 485926a3a0f8f154a8d88a9dc497e850, type: 2}
 --- !u!1 &603358557

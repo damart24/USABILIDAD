@@ -11,6 +11,7 @@ public class JapaneseTextAttributes : MonoBehaviour
     public bool vertical;
     public float japaneseAugmentValue;
     public float characterSpacingValue;
+    public float lineSpacingValue;
     public float japaneseSize;
     public TMPro.TMP_FontAsset japaneseFont;
 }
