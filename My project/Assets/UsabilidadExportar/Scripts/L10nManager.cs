@@ -10,17 +10,13 @@ public class L10nManager : MonoBehaviour
     private static L10nManager instance_;
     private void Awake()
     {
-        if (instance_ == null){
+        if (instance_ == null)
+        {
             instance_ = this;
             DontDestroyOnLoad(this);
         }
         else
             Destroy(gameObject);
-    }
-
-    public L10nManager GetInstance()
-    {
-        return instance_;
     }
 
     public static L10nManager Instance
