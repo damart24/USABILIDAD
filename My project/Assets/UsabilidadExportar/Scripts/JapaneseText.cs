@@ -114,7 +114,8 @@ public class JapaneseText : TextMeshProUGUI
             //Si hay un ':' fuera de los brackets, lo quitamos y continuamos, se que no es lo mejor pero prefiero que no pete :vv
             if (indexOfopenSquareBracket > indexOfColon || indexOfcloseSquareBracket < indexOfColon)
             {
-                cleanText.Remove(indexOfColon, 1);
+
+                cleanText = cleanText.Remove(indexOfColon, 1);
                 continue;
             }
 

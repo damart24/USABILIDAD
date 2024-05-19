@@ -315,7 +315,10 @@ public class SwipeCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
                 GameObject explanation = gameManager.explanationGameObjects[explanationNumber];
                 GameObject explanationObjectInstance = Instantiate(explanation, gameManager.explanationCanvas);
-                explanationObjectInstance.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textoExplicativo;
+                L10nObject o = explanationObjectInstance.GetComponentInChildren<L10nObject>();
+                GameObject obj = o.getActiveObject();
+                TextMeshProUGUI t = obj.GetComponent<TextMeshProUGUI>();
+                t.text = textoExplicativo;
             }
            
             StartCoroutine(MovedCard());

@@ -8,7 +8,7 @@ public class L10nObject : MonoBehaviour
     GameObject spanishObject;
     [SerializeField]
     GameObject japaneseObject;
-    void Start()
+    void Awake()
     {
         switch (L10nManager.Instance.GetLanguage())
         {

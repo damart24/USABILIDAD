@@ -17,6 +17,12 @@ public class L10nManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    public L10nManager GetInstance()
+    {
+        return instance_;
+    }
+
     public static L10nManager Instance
     {
         get => instance_;
